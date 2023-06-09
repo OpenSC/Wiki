@@ -1,20 +1,17 @@
-h1. OpenPGP card
+h1. OpenPGP Card
 
-The OpenPGP card is an ISO/IEC 7816-4/-8 compatible smart card implementation that is integrated with many GnuPG functions.
+The OpenPGP Card is an ISO/IEC 7816-4/-8 compatible smart card implementation that is integrated with many GnuPG functions.
 Using this smart card, various cryptographic tasks (encryption, decryption, digital signing/verification, authentication etc.) can be performed.
 
-The cards come in various form factors ranging from the standard size ID-1, over ID-1 with cut-outs for ID-000 (i.e. SIM card size), which together with an USB card reader allows to build a do-it-yourself crypto stick, to the GPF Crypto Stick.
+The cards come in various form factors ranging from the standard size ID-1, over ID-1 with cut-outs for ID-000 (i.e. SIM card size), which together with an USB card reader allows to build a do-it-yourself crypto stick, to the Nitrokey USB security key.
 
-They implement the OpenPGP card specification which evolved compatibly
-from "v1.0":http://g10code.com/docs/openpgp-card-1.0.pdf in 2003,
-via "v1.1":http://g10code.com/docs/openpgp-card-1.1.pdf in 2004,
-to "v2.0":http://g10code.com/docs/openpgp-card-2.0.pdf which was released in 2009.
+They implement the OpenPGP Card specification which evolved compatibly from "v1.0":http://g10code.com/docs/openpgp-card-1.0.pdf in 2003, via "v1.1":http://g10code.com/docs/openpgp-card-1.1.pdf in 2004, "v2.0":http://g10code.com/docs/openpgp-card-2.0.pdf which was released in 2009, to "v3.4.1":https://www.gnupg.org/ftp/specs/OpenPGP-smart-card-application-3.4.1.pdf in 2020.
 
-Version 1.0 of the specification is mostly of theoretical interest, as most - if not all - cards adhere to version 1.1 or version 2.0.
+Version 1.0 of the specification is mostly of theoretical interest, as most - if not all - cards adhere to version 3.
 
 All versions allow storing card holder details as well as generating and storing up to three RSA key pairs on the card.
 
-While the 1.x version only supported 1024-bit RSA keys and no certificates, version 2.0 allows for RSA keys up to 4096 bits (requires GnuPG 2.0.18+) and optionally an X.509 card holder certificate for the AUT key on the card.
+While the 1.x version only supported 1024-bit RSA keys and no certificates, version 2.0 allows for RSA keys up to 4096 bits (requires GnuPG 2.0.18+) and optionally an X.509 card holder certificate for the AUT key on the card. Version 3.0 introduced support for ECC.
 
 Other changes were:
 * V1.1 brought 4 optional DOs for private use with different access conditions
@@ -28,20 +25,19 @@ Other changes were:
 
 h2. Where/How to get one?
 
-OpenPGP cards / CryptoSticks can be obtained from vendors like e.g.
+OpenPGP Cards / Nitrokeys can be obtained from vendors like e.g.
+* "Nitrokey":https://shop.nitrokey.com/
 * "Kernel concepts":http://shop.kernelconcepts.de
-* "German Privacy Foundation":https://shop.crypto-stick.com
-* or by becoming a fellow in the "Free Software Foundation Europe":http://fsfe.org which uses the OpenPGP card specification on the "Fellowship Smart Cards":http://wiki.fsfe.org/FellowshipSmartCard it hands out to its fellows.
+* or by becoming a fellow in the "Free Software Foundation Europe":http://fsfe.org which uses the OpenPGP Card specification on the "Fellowship Smart Cards":http://wiki.fsfe.org/FellowshipSmartCard it hands out to its fellows.
 
 
 h2. State of OpenSC support
 
-OpenPGP card "v1.0":http://www.g10code.de/docs/openpgp-card-1.0.pdf /"1.1":http://www.g10code.de/docs/openpgp-card-1.1.pdf is deprecated but should work since OpenSC 0.9.1. Starting with OpenSC 0.12.2, OpenSC supports reading the OpenPGP card "v2.0":http://www.g10code.de/docs/openpgp-card-2.0.pdf too. Since OpenSC 0.13 full write support for OpenPGP Card 2 is supported.
-There is a "patch":https://github.com/hongquan/OpenSC-main/tree/gnuk being made to support "Gnuk":http://www.fsij.org/gnuk/, a variant of OpenPGP v.2. The patch is waiting for being merged to OpenSC upstream.
+OpenPGP Card "v1.0":http://www.g10code.de/docs/openpgp-card-1.0.pdf /"1.1":http://www.g10code.de/docs/openpgp-card-1.1.pdf is deprecated but should work since OpenSC 0.9.1. Starting with OpenSC 0.12.2, OpenSC supports reading the OpenPGP Card "v2.0":http://www.g10code.de/docs/openpgp-card-2.0.pdf too. Since OpenSC 0.13 full write support for OpenPGP Card 2 is supported. Support for OpenPGP Card 3 was introduced later.
 
 h2. Usage
 
-To apply this usage to Gnuk, the patch above is needed. Basically, usage between general OpenPGP card (CryptoStick as example) and Gnuk are the same, except some differences will be noted below.
+To apply this usage to Gnuk, the patch above is needed. Basically, usage between general OpenPGP Card (for example Nitrokey) and Gnuk are the same, except some differences will be noted below.
 
 h3. 1. Display user info
 
@@ -99,11 +95,11 @@ h5. Key generation via @pkcs15-init@:
 
 There is limitation: @pkcs15-init@ requires new key length to be the same as existing key. To generate key with different key length, @openpgp-tool@ is recommended.
 
-@pkcs15-init@ also requires to explicitly remove existing key/object. That's why we have @--delete-objects privkey,pubkey --id 3@ in the command (though it has no effect to CryptoStick, which does not support deleting key, but support overwriting key).
+@pkcs15-init@ also requires to explicitly remove existing key/object. That's why we have @--delete-objects privkey,pubkey --id 3@ in the command (though it has no effect to Nitrokey, which does not support deleting key, but support overwriting key).
 
 h3. 4. Delete key (Gnuk)
 
-Deleting key is supported by Gnuk only. CryptoStick does not.
+Deleting key is supported by Gnuk only. Nitrokey does not.
 Example to delete 3rd (authentication) key:
 
 bc. openpgp-tool --verify CHV3 --pin 12345678 --del-key 3
@@ -112,11 +108,11 @@ or
 
 bc. pkcs15-init --delete-objects privkey,pubkey --id 3
 
-If you want to delete key from CryptoStick, the only option is to erase card (all things will be deleted).
+If you want to delete key from Nitrokey, the only option is to erase card (all things will be deleted).
 
-h3. 5. Erase card (CryptoStick)
+h3. 5. Erase card (Nitrokey)
 
-Erasing card is supported by CryptoStick (or general OpenPGP card v2) only. Gnuk does not support.
+Erasing card is supported by Nitrokey (or general OpenPGP Card v2+) only. Gnuk does not support.
 
 bc. openpgp-tool --erase
 
@@ -125,9 +121,6 @@ or
 bc. pkcs15-init --erase-card
 
 h3. 6. Import key resp. certificate
-
-You can register and get certificate for free from "StartSSL":https://www.startssl.com/, using Firefox browser.
-The certificate will be generated and stored in Firefox. You should backup it to a p12 file.
 
 h5. Only certificate
 
@@ -165,13 +158,13 @@ bc. pkcs15-init --delete-objects cert --id 3
 
 h2. OpenSC driver details
 
-OpenPGP cards only implement a small subset of the ISO/IEC 7816-4/-8 standard. Most importantly, they do not use a file system to store the application specific data. Instead the data stored for the application is accessible via Data Objects (DO) only.
+OpenPGP Cards only implement a small subset of the ISO/IEC 7816-4/-8 standard. Most importantly, they do not use a file system to store the application specific data. Instead the data stored for the application is accessible via Data Objects (DO) only.
 
 These DOs come in two variants:
 * simple DOs that do not have a meaningful internal structure
 * complex DOs that have a well-known internal structure which is encoded according to ASN.1 BER rules
 
-In order to make OpenPGP cards accessible for OpenSC's PKCS15 functions, the OpenPGP card driver in OpenSC simulates a file system.
+In order to make OpenPGP Cards accessible for OpenSC's PKCS15 functions, the OpenPGP Card driver in OpenSC simulates a file system.
 
 It does so by reading the well-known DOs on the card and converting them according to this logic: 
 * simple DOs are treated as wEFs
@@ -269,7 +262,7 @@ h3. General
 h3. Mac OS X
 
  * Use "http://www.gpgtools.org/":http://www.gpgtools.org/ to get GnuPG2 for Mac OS X
- * Remove OpenSC.tokend from !/System/Library/Security/tokend when personalizing your token. scdaemon requires exclusive access which can not be shared with OpenSC.tokend, which is started when OpenPGP card/token is inserted.
+ * Remove OpenSC.tokend from !/System/Library/Security/tokend when personalizing your token. scdaemon requires exclusive access which can not be shared with OpenSC.tokend, which is started when OpenPGP Card/token is inserted.
  * kill scdaemon and re-insert your reader if you still see this:
  <pre><code>gpg: selecting openpgp failed: Card error
 gpg: OpenPGP card not available: Card error
@@ -346,7 +339,7 @@ Version ..........: 2.0
 Manufacturer .....: ZeitControl
 ...
 </code></pre>
-Solution: remove other smart card readers. If all readers are USB, killing pcscd and inserting readers in the "right order" (CryptoStick first) helps. If this is not possible (for example, a reader integrated into the keyboard) editing the "CCID driver":http://pcsclite.alioth.debian.org/ccid.html Info.plist file and removing entries related to the "other" smart card readers can help.
+Solution: remove other smart card readers. If all readers are USB, killing pcscd and inserting readers in the "right order" (Nitrokey first) helps. If this is not possible (for example, a reader integrated into the keyboard) editing the "CCID driver":http://pcsclite.alioth.debian.org/ccid.html Info.plist file and removing entries related to the "other" smart card readers can help.
 Alternatively look up the name of the reader you are using and add it to _~/.gnupg/scdaemon.conf_ (or @--reader-port@ command line option if using GnuPG 1.X):
  <pre><code> reader-port "German Privacy Foundation Crypto Stick v1.2 01 00"</code></pre>
 After this a reader other than the first reader can be used. Be sure to change the configuration file if your reader setup changes (like more readers are added before the right one) as the numbering at the end of the name changes.
