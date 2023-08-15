@@ -21,6 +21,22 @@ Product page:
 "http://ftsafe.com/products/PKI/Standard":http://ftsafe.com/products/PKI/Standard
 Buy samples: "http://ftsafe.com/onlinestore/index":http://ftsafe.com/onlinestore/index
 
+h1. Setting up the token
+
+The token can be set up using standard OpenSC tools, such as pkcs15-init. The token is using default transport keys (unless changed) so we can start with erasing the card:
+
+    $ pkcs15-init -E -T
+
+After that we need to create the pkcs15 filesystem and PINs:
+
+    $ pkcs15-init -C -T -p pkcs15+onepin --pin 123456 --puk 12345678
+
+To generate key pair on the token
+
+    $ pkcs15-init -G rsa/2048 -l "RSA2k key" -a 01 -i 01 --so-pin 12345678 --pin 123456
+
+    $ pkcs15-init -G rsa/2048 -l "RSA2k encryption key" -a 01 -i 02 --pin 123456 -u decrypt
+
 h1. FAQ
 
 For users which get the error "Failed to erase card: Security status not satisfied" while erasing card, please download fix tool from below. After running fix-tool as root, please do remove and re-plug the token/card.
