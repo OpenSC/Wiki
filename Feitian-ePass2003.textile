@@ -29,13 +29,21 @@ The token can be set up using standard OpenSC tools, such as pkcs15-init. The to
 
 After that we need to create the pkcs15 filesystem and PINs:
 
-    $ pkcs15-init -C -T -p pkcs15+onepin --pin 123456 --puk 12345678
+    $ pkcs15-init --create-pkcs15 -T -p pkcs15+onepin --pin 123456 --puk 12345678
 
-To generate key pair on the token
+To generate RSA key pair on the token:
 
-    $ pkcs15-init -G rsa/2048 -l "RSA2k key" -a 01 -i 01 --so-pin 12345678 --pin 123456
+    $ pkcs15-init --generate-key rsa/2048 -l "RSA2k key" -a 01 -i 01 --so-pin 12345678 --pin 123456
 
-    $ pkcs15-init -G rsa/2048 -l "RSA2k encryption key" -a 01 -i 02 --pin 123456 -u decrypt
+    $ pkcs15-init --generate-key rsa/2048 -l "RSA2k encryption key" -a 01 -i 02 --pin 123456 --key-usage decrypt
+
+The newer tokens support also Elliptic curves. To generate a EC key, use the similar command:
+
+    $ pkcs15-init --generate-key ec/prime256v1 -a 01 -i 03 --pin 123456
+
+The driver also supports loading existing keys to the token with the following command:
+
+    $ pkcs15-init --store-private-key rsa-key.pem -a 01 --key-usage sign,decrypt --pin 123456
 
 h1. FAQ
 
