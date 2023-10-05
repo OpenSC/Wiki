@@ -106,8 +106,8 @@ The table below shows a list of all tested smart cards that were used:
 | cac               | CAC Test Cards (Oberthur ID One, Gemalto GCX4), virt_CACard      |
 | coolkey           | 534e SafeNet Java Card with Coolkey Applet (1k RSA)              |
 | gids              | GIDS Applet  (JCardSim)                                          |
-| myeid             | OsEID                                                            |
-| openpgp           | OpenPGP Applet  (JCardSim)                                       |
+| myeid             | OsEID, Aventra MyEID 4.5.5                                       |
+| openpgp           | OpenPGP Applet  (JCardSim), NitroKey Start (gnuk)                |
 | isoApplet         | IsoApplet v0 and v1 (JCardSim)                                   |
 | cardos            | CardOS 5.3 (2017, 2k RSA), CardOS 5.3 (2023, 4k RSA)             |
 | idprime           | IDPrime 940, IDPrime 930, IDPrime MD 830, IDPrime 3810           |
