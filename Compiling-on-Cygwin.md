@@ -49,7 +49,7 @@ Note: installing the above also causes the following to be installed:
 <pre><code>$ cd /usr/src
 $ git clone https://github.com/OpenSC/OpenSC.git
 $ cd OpenSC</code></pre>
-3. Then perform commands:
+2. Then perform commands:
 <pre><code>$ ./bootstrap
 $ ./configure
 $ make
