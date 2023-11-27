@@ -49,10 +49,6 @@ Note: installing the above also causes the following to be installed:
 <pre><code>$ cd /usr/src
 $ git clone https://github.com/OpenSC/OpenSC.git
 $ cd OpenSC</code></pre>
-2. Check the version of configure.ac does not define CRYPTOKI_FORCE_WIN32.
-
-   So, edit configure.ac and comment out (#) line at (approx) 107, that looks like: 
-      <pre><code>  CPPFLAGS="$... -DCRYPTOKI_FORCE_WIN32"</code></pre>
 3. Then perform commands:
 <pre><code>$ ./bootstrap
 $ ./configure --disable-strict
