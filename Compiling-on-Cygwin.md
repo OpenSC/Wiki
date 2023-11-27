@@ -51,7 +51,7 @@ $ git clone https://github.com/OpenSC/OpenSC.git
 $ cd OpenSC</code></pre>
 3. Then perform commands:
 <pre><code>$ ./bootstrap
-$ ./configure --disable-strict
+$ ./configure
 $ make
 $ make install</code></pre>
 
