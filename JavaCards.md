@@ -13,8 +13,20 @@ The <i>core</i> of OpenSC is a bunch of card drivers, both read-only drivers as 
 The main difference between "native" cards and JavaCards is the requirement to install the proper application to the card before continuing with OpenSC, which has historically been a somewhat complicated procedure and what this page tried to demystify.
 
 List of applets OpenSC supports (can be read-only and locked cards):
- * [IsoApplet](https://github.com/philipWendland/IsoApplet)
- * MuscleApplet (deprecated)
+
+* [IsoApplet](https://github.com/philipWendland/IsoApplet)
+  * General PKCS#15 filesystem and PKI operations.
+  * Requires Java Card 3.0.4 or newer for v1, Java Card 2.2.1 or newer for legacy branch, forks with 2.2.1 support exist.
+  * `pkcs15-init -E` to erase then `pkcs15-init -C` to create a filesystem, PIN, and PUK. Then `pkcs15-tool` for any further operations.
+* [GidsApplet](https://github.com/vletoux/GidsApplet)
+  * Also compatible with Windows built-in drivers, for most features.
+  * Requires Java Card 2.2.1 or newer.
+  * `gids-tool --initialize` to initialize, set 48-char hex string as admin key, and set a user pin. Then `gids-tool`, `pkcs15-init`, and `pkcs15-tool` for any further operations.
+* [SmartPGP](https://github.com/github-af/SmartPGP)
+  * OpenPGP card 3.4 implementation. Java Card 3.0.4 or newer.
+  * Serial number is embedded in the applet ID: see [how to set the serial number at install time](https://github.com/github-af/SmartPGP/issues/52) using `gp`.
+  * Use CLI tool in its source repo to set key size, then `openpgp-tool` or `gpg --card-edit` to set up.
+* MuscleApplet (deprecated)
 
 ##  Supported cards
 
