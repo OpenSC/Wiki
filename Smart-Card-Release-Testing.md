@@ -108,7 +108,7 @@ The table below shows a list of all tested smart cards that were used:
 | cardos            | CardOS 5.3 (2023, 4k RSA, 2k RSA)                                |
 | cac               | CAC test cards, virt_CACard                                      |
 | cac1              | CAC test cards                                                   |
-| openpgp           | OpenPGP Applet  (JCardSim), NitroKey Start                       |
+| openpgp           | OpenPGP Applet (JCardSim), Nitrokey Start (RTM.10), Nitrokey Pro 2 (0.14)|
 | isoApplet         | IsoApplet v0 and v1 (JCardSim)                                   |
 | epass2003         | ePass2003 PKI Token (2023)                                       |
 | gids              | GIDS Applet  (JCardSim)                                          |
