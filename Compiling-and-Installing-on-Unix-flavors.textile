@@ -28,6 +28,11 @@ If the certificates in the card are compressed, you also need zlib:
 <pre><code>sudo apt-get install zlib1g-dev
 </code></pre>
 
+If the driver for the card needs openpace:
+
+<pre><code>sudo apt-get install openpace libaec-dev
+</code></pre>
+
 h4. Installing Requirements on Fedora
 
 <pre><code>su -c 'yum install readline-devel openssl-devel libxslt docbook-style-xsl pcsc-lite-devel automake autoconf libtool gcc'</code></pre>
