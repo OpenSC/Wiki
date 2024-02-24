@@ -1,0 +1,53 @@
+h1. Slovenian EID (eOI)
+
+Slovenian EID (eOI) is a card manufactured by NXP. They also provide the software solution IDprotect adopted for SI-TRUST. There are versions for Windows and Mac accessible from "https://www.si-trust.gov.si/sl/eoi/programska-oprema-idprotect-client/":https://www.si-trust.gov.si/sl/eoi/programska-oprema-idprotect-client/
+
+Support for Linux was planned at the begining, but with time it was removed.
+
+h2. The card
+
+The eOI has contact and contactless support over NFC. NFC requires CAN to enable access. On the card there are multiple apps for different levels of security. First app (E828BD080F014E585031) has one token for low security use that does not require PIN to access.
+Second app (E828BD080F014E585030) has two high security tokens. One token for identification and one token for signing. Both need PIN to access. 
+All tokens on the card are 384 bit EC. All tokens have SI-TRUST as issuer.
+
+h2. OpenSC support
+
+OpenSC includes EOI driver that supports the card from version 0.24.0. It is available for Windows, Mac and Unix. If your distribution on Linux does not have prebuilt package for OpenSC or newer, it can be built from source [[Compiling-and-Installing-on-Unix-flavors]]. The driver will be built only if OpenPACE is present.
+
+With OpenSC apps can be configured separately. To access high security tokens the opensc.conf should include the folowing in app default section:
+<pre><code>framework pkcs15 {
+                # Slovenian eID - low level (pinless, "Prijava brez PIN-a")
+                application E828BD080F014E585031 {
+                model = "ChipDocLite";
+                disable = true;
+                user_pin = "Norm PIN";
+                }
+
+                # Slovenian eID - high level (QES, "Podpis in prijava")
+                application E828BD080F014E585030 {
+                model = "ChipDocLite";
+                # disable = true;
+                user_pin = "Norm PIN";
+                sign_pin = "Sig PIN";
+                }
+        }
+</code></pre>
+To use low security tokens use:
+<pre><code>framework pkcs15 {
+                # Slovenian eID - low level (pinless, "Prijava brez PIN-a")
+                application E828BD080F014E585031 {
+                model = "ChipDocLite";
+                #disable = true;
+                user_pin = "Norm PIN";
+                }
+
+                # Slovenian eID - high level (QES, "Podpis in prijava")
+                application E828BD080F014E585030 {
+                model = "ChipDocLite";
+                disable = true;
+                user_pin = "Norm PIN";
+                sign_pin = "Sig PIN";
+                }
+        }
+</code></pre>
+
