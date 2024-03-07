@@ -45,7 +45,7 @@ h2. Build and Test Binaries
 **** Github will automatically create _*-rcX_ as lightweight tag
 ** For final releases, select the existing tag, e.g. _0.20.0_; for release candidates choose a new tag, e.g. _0.20.0-rc1_
 # Prepare build artifacts
-** Wait around 10 minutes (after pushing the tag) to allow build artifacts be placed into the "nightly builds":https://github.com/OpenSC/Nightly
+** Wait around 50 minutes (after pushing the tag) to allow build artifacts be placed into the "nightly builds":https://github.com/OpenSC/Nightly
 ** All builds must succeed and must not generate more warnings than the previous build.
 ** Copy build artifacts selecting the correct branch using the hash of the release commit, e.g.:
 <pre><code>  git clone https://github.com/OpenSC/OpenSC --single-branch
@@ -77,6 +77,7 @@ h2. Announcement
 ** Important and visible (breaking) changes in this release (not a copy of _NEWS_ file)
 ** URL-s for downloads
 ** Pointers to full verbose information (list of commits, full changelog, closed bugs)
+** SHA-256 hashes of release artifacts
 ** Plans for next release
 * Find someone to proofread the announcement.
 * Via mail publish the announcment on "opensc-announce@lists.sourceforge.net":https://sourceforge.net/p/opensc/mailman/opensc-announce/ and "opensc-devel@lists.sourceforge.net":https://sourceforge.net/p/opensc/mailman/opensc-devel/ lists.
