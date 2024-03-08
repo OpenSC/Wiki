@@ -14,27 +14,30 @@ PKCS#11 also has a drawbacks. First, applications need to be manually configured
 h4. Tools and libraries
 
 These tools and libraries help in talking to PKCS#11 modules or integrate PKCS#11 with other frameworks.
- * C
-  ** [[libp11|https://github.com/OpenSC/libp11]] is a wrapper library for PKCS#11 modules which includes an OpenSSL engine for using PKCS#11 tokens
-  ** [[pkcs11-helper|https://github.com/OpenSC/pkcs11-helper]] Library that simplifies the interaction with PKCS#11 providers for end-user applications using a simple API and optional OpenSSL engine
-  ** "gp11":http://live.gnome.org/GnomeKeyring/Architecture#gp11 is a GObject based wrapper for PKCS#11, distributed with gnome-keyring.
-  ** "PaKChoiS":http://www.manyfish.co.uk/pakchois/ aims to provide a thin wrapper over the PKCS#11 interface.
-  ** "p11-kit":http://p11-glue.freedesktop.org/p11-kit.html eases working with multiple PKCS#11 modules and includes support for "PKCS#11 URI scheme":http://tools.ietf.org/html/draft-pechanec-pkcs11uri-13.
- * Python
-  ** "PyKCS11":http://www.bit4id.org/trac/pykcs11 is a python wrapper (SWIG) for PKCS#11 modules.
- * Java 
-  ** [[Using-smart-cards-with-Java-SE]] wiki page contains list of PKCS#11 wrappers
-  ** [[OpenSC-Java|https://github.com/CardContact/opensc-java]] is a Java PKCS#11 wrapper and JCE Provider
+* C
+** [[libp11|https://github.com/OpenSC/libp11]] is a wrapper library for PKCS#11 modules which includes an OpenSSL engine for using PKCS#11 tokens
+** [[pkcs11-helper|https://github.com/OpenSC/pkcs11-helper]] Library that simplifies the interaction with PKCS#11 providers for end-user applications using a simple API and optional OpenSSL engine
+** "gp11":http://live.gnome.org/GnomeKeyring/Architecture#gp11 is a GObject based wrapper for PKCS#11, distributed with gnome-keyring.
+** "PaKChoiS":http://www.manyfish.co.uk/pakchois/ aims to provide a thin wrapper over the PKCS#11 interface.
+** "p11-kit":http://p11-glue.freedesktop.org/p11-kit.html eases working with multiple PKCS#11 modules and includes support for "PKCS#11 URI scheme":http://tools.ietf.org/html/draft-pechanec-pkcs11uri-13.
+
+* Python
+** "PyKCS11":https://github.com/LudovicRousseau/PyKCS11 is a python wrapper (SWIG) for PKCS#11 modules.
+** "python-pkcs11":https://github.com/pyauth/python-pkcs11 is a pure Python wrapper with classes and context managers for PKCS#11 modules.
+
+* Java 
+** [[Using-smart-cards-with-Java-SE]] wiki page contains list of PKCS#11 wrappers
+** [[OpenSC-Java|https://github.com/CardContact/opensc-java]] is a Java PKCS#11 wrapper and JCE Provider
 
 h3. CryptoAPI (Windows)
 
 Windows applications use CryptoAPI to do native SSL connections and to use the Windows certificate store. All applications using CryptoAPI (or CryptoAPI-NG) can transparently use all smart cards that provide a full CSP or a smart card BaseCSP module. Most card vendors provide one such driver. OpenSC has a rudimentary BaseCSP module (a MiniDriver), but it is still work in progress. Use CryptoAPI if you are writing a Windows-only application or if you want a well functioning and integrated experience for your users. CryptoAPI provides trust management (user has a centralized location to set the trust bits for various X509 certificates) in addition to basic cryptographic operations and windows API provides higher level functions that are CAPI enabled (TODO: OpenURL example/link)
- * [[Example to use OpenSC with Microsoft CNG and CryptoAPI]]
+* [[Example to use OpenSC with Microsoft CNG and CryptoAPI]]
 
 h3. CDSA/Keychain (Mac OS X)
 
 Mac OS X implements CDSA as the cryptography API for the Mac platform (in theory it is a universal specification but in practice only implemented by Apple). OS X 10.4 and above implement Tokend, what is similar in nature to BaseCSP on Windows - it provides a plugin architecture to add support for smart cards into the system. Applications using CDSA can then transparently make use of smart cards. Applications usually use higher level API-s (like Keychain or SSL socket API-s) that internally make use of CDSA. Trust management is exposed centrally via Keychain.app. Use Keychain API-s if writing a native application for Mac OS X or if you want to have a smooth "Mac style" user experience.
- * "Mac Dev Center: Security Overview: Security Architecture":http://developer.apple.com/mac/library/documentation/Security/Conceptual/Security_Overview/Architecture/Architecture.html
+* "Mac Dev Center: Security Overview: Security Architecture":http://developer.apple.com/mac/library/documentation/Security/Conceptual/Security_Overview/Architecture/Architecture.html
 
 h3. Java Cryptography Architecture (JCA)
 
@@ -75,10 +78,10 @@ PC/SC is a standard from "PC/SC Workgroup":http://www.pcscworkgroup.com/ but the
 
 h4. Tools and libraries
 
- * Python
-  * "pyscard":http://pyscard.sourceforge.net/
- * Java
-  * See [[dedicated Java page|Using-smart-cards-with-Java-SE]] about javax.smartcardio in Java 1.6+
+* Python
+** "pyscard":http://pyscard.sourceforge.net/
+* Java
+** See [[dedicated Java page|Using-smart-cards-with-Java-SE]] about javax.smartcardio in Java 1.6+
 
 h3. CT-API
 

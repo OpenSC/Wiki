@@ -4,12 +4,12 @@ h2. Typical Installation
 
 We suggest to install OpenSC into @/usr@ and to put the configuration file into @/etc/opensc@. The default however would be @/usr/local@ and @/usr/local/etc@, so you might want to change those. We suggest to configure and compile OpenSC like this:
 
-<pre><code>tar xfvz opensc-*.tar.gz
+bc. tar xfvz opensc-*.tar.gz
 cd opensc-*
 ./bootstrap
 ./configure --prefix=/usr --sysconfdir=/etc/opensc
 make
-sudo make install</code></pre>
+sudo make install
 
 h2. Build Requirements
 
@@ -20,27 +20,27 @@ h2. Build Requirements
 
 h4. Installing Requirements on Debian/Ubuntu
 
-<pre><code>sudo apt-get install pcscd libccid libpcsclite-dev libssl-dev libreadline-dev autoconf automake build-essential docbook-xsl xsltproc libtool pkg-config
-</code></pre>
+bc. sudo apt-get install pcscd libccid libpcsclite-dev libssl-dev libreadline-dev autoconf automake build-essential docbook-xsl xsltproc libtool pkg-config
+
 
 If the certificates in the card are compressed, you also need zlib:
 
-<pre><code>sudo apt-get install zlib1g-dev
-</code></pre>
+bc. sudo apt-get install zlib1g-dev
+
 
 If the driver for the card needs openpace:
 
-<pre><code>sudo apt-get install openpace libaec-dev
-</code></pre>
+bc. sudo apt-get install openpace libaec-dev
+
 
 h4. Installing Requirements on Fedora
 
-<pre><code>su -c 'yum install readline-devel openssl-devel libxslt docbook-style-xsl pcsc-lite-devel automake autoconf libtool gcc'</code></pre>
+bc. su -c 'yum install readline-devel openssl-devel libxslt docbook-style-xsl pcsc-lite-devel automake autoconf libtool gcc'</code></pre>
 
 If the certificates in the card are compressed, you also need zlib:
 
-<pre><code>su -c 'yum install zlib-devel'
-</code></pre>
+bc. su -c 'yum install zlib-devel'
+
 
 h2. Build Configuration
 
@@ -55,6 +55,6 @@ If you don't have @pkg-config@ installed, and don't want to install it, you can 
 @./configure --help@ will list other useful environment variables.
 
 If some libraries are not installed in typical locations, you need to tell @pkg-config@ where to find the @*.pc@ files. You can do this with the @PKG_CONFIG_PATH@ environment variable, for example:
-<pre><code>export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/mystuff/liv/pkgconfig</code></pre>
+bc. export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/mystuff/liv/pkgconfig
 
 By default, we are compiling OpenSC with @-Wall -Wextra -Wno-unused-parameter -Werror@, which causes all compiler warnings to be treated as errors. Use @./configure --disable-strict@ to disable this behavior.
