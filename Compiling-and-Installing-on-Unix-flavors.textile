@@ -4,7 +4,8 @@ h2. Typical Installation
 
 We suggest to install OpenSC into @/usr@ and to put the configuration file into @/etc/opensc@. The default however would be @/usr/local@ and @/usr/local/etc@, so you might want to change those. We suggest to configure and compile OpenSC like this:
 
-bc. tar xfvz opensc-*.tar.gz
+bc..
+tar xfvz opensc-*.tar.gz
 cd opensc-*
 ./bootstrap
 ./configure --prefix=/usr --sysconfdir=/etc/opensc
@@ -13,10 +14,10 @@ sudo make install
 
 h2. Build Requirements
 
- * "PCSC-Lite":https://pcsclite.apdu.fr/ (runtime and development)
- * "OpenSSL":https://www.openssl.org/ (optional, runtime and development)
- * "OpenPACE":https://frankmorgner.github.io/openpace/ (optional, runtime and development)
- * "GNU Readline":https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html (optional, runtime and development)
+* "PCSC-Lite":https://pcsclite.apdu.fr/ (runtime and development)
+* "OpenSSL":https://www.openssl.org/ (optional, runtime and development)
+* "OpenPACE":https://frankmorgner.github.io/openpace/ (optional, runtime and development)
+* "GNU Readline":https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html (optional, runtime and development)
 
 h4. Installing Requirements on Debian/Ubuntu
 
@@ -35,11 +36,11 @@ bc. sudo apt-get install openpace libaec-dev
 
 h4. Installing Requirements on Fedora
 
-bc. su -c 'yum install readline-devel openssl-devel libxslt docbook-style-xsl pcsc-lite-devel automake autoconf libtool gcc'</code></pre>
+bc. sudo dnf install readline-devel openssl-devel libxslt docbook-style-xsl pcsc-lite-devel automake autoconf libtool gcc
 
 If the certificates in the card are compressed, you also need zlib:
 
-bc. su -c 'yum install zlib-devel'
+bc. sudo dnf install zlib-devel
 
 
 h2. Build Configuration
@@ -47,14 +48,16 @@ h2. Build Configuration
 OpenSC tries to auto-detect all libraries using the "pkg-config":https://www.freedesktop.org/wiki/Software/pkg-config/ system.
 
 If you don't have @pkg-config@ installed, and don't want to install it, you can use environment variables to tell configure, how to link with some library:
- * @PCSC_CFLAGS@ and @PCSC_LIBS@ for PCSC-Lite
- * @OPENSSL_CFLAGS@ and @OPENSSL_LIBS@ for OpenSSL
- * @OPENPACE_CFLAGS@ and @OPENPACE_LIBS@ for OpenPACE
- * @READLINE_CFLAGS@ and @READLINE_LIBS@ for GNU Readline
+
+* @PCSC_CFLAGS@ and @PCSC_LIBS@ for PCSC-Lite
+* @OPENSSL_CFLAGS@ and @OPENSSL_LIBS@ for OpenSSL
+* @OPENPACE_CFLAGS@ and @OPENPACE_LIBS@ for OpenPACE
+* @READLINE_CFLAGS@ and @READLINE_LIBS@ for GNU Readline
 
 @./configure --help@ will list other useful environment variables.
 
 If some libraries are not installed in typical locations, you need to tell @pkg-config@ where to find the @*.pc@ files. You can do this with the @PKG_CONFIG_PATH@ environment variable, for example:
+
 bc. export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/local/lib/pkgconfig:/opt/mystuff/liv/pkgconfig
 
 By default, we are compiling OpenSC with @-Wall -Wextra -Wno-unused-parameter -Werror@, which causes all compiler warnings to be treated as errors. Use @./configure --disable-strict@ to disable this behavior.
