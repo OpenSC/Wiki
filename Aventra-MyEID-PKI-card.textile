@@ -26,18 +26,17 @@ h3. Technical details
  * FINEID S4-1 and S4-2
 
 <b>Other features</b>
- * 512 bit to 2048 bit RSA cryptographic operations with on card key generation
+ * 512 bit to 4096 bit RSA cryptographic operations with on card key generation
  * Secure random number generator (FIPS 140-2)
  * DES, 3DES, AES128, AES256 symmetric encryption algorithms
- * 80K EEPROM memory
+ * 144K EEPROM memory
  * Since MyEID 4: ECDSA and ECDH operations. 
 
 <b>Compatible software</b>
  * OpenSC
  * Aventra MyEID Minidriver for Windows
- * Aventra ActiveSecurity™ MyClient
  * Fujitsu mPollux DigiSign™ middleware
- * Large number of third party software products that support CSP for Microsoft™ CryptoAPI or PKCS#11 Token Interface
+ * Large number of third party software products that support Microsoft Cryptography API: Next Generation (CNG) or PKCS#11 Token Interface
 
 h2. OpenSC support
 
@@ -115,7 +114,7 @@ The setting in the <code>opensc.conf</code> (usually in <code>/etc</code> or <co
 
 h2. Links & other information
 
-<b>Card details:</b> "Reference manual":https://webservices.aventra.fi/wordpress/wp-content/downloads/MyEID_PKI_JavaCard_Applet_Reference_Manual_2-4-1.pdf
+<b>Card details:</b> "Reference manual":https://aventra.fi/wp-content/uploads/2024/03/MyEID-PKI-JavaCard-Applet-Reference-Manual.pdf
 
 Cards can be bought from Aventra as blank cards or according to customer specifications regarding appearance etc. Small quantities of cards and readers can be easily bought from the web shop. For larger quantities contact Aventra sales for a quote.  
 
@@ -128,13 +127,11 @@ Aventra is a high tech company specialising in information security products and
 
 Aventra offers a complete portfolio of card products ranging from simple plastic cards to high security smart cards and tokens. Our most recent product line features security solutions for mobile applications.  We also provide complete services and systems for issuing and managing cards and secure tokens, including card printers and materials.
 
-!https://webservices.aventra.fi/wordpress/wp-content/images/aventra-logo-small.png(Aventra logo)!
-
 h2. Speed
  * RSA 1024 key generation: 0m8.280s
  * RSA 2048 key generation: 0m41.037s
 
 h2. Notes
  * Card requires a PUK code when creating a PIN code (fails to create a PIN without a PUK)
- * *Aventra's MyEID minidriver has passed Microsoft Windows Hardware Certification* and it will soon be available from Windows Update (Smart Card Plug and Play). You can also download it "here.":http://aventra.fi/English/downloads_Minidriver_E.html <small>(2013-01-11)</small>
+ * A minidriver is available for download "here.":https://aventra.fi/downloads/<small></small>
  * You can <b>not</b> upload custom Java-Applets like the openpgpcard-applet to the Aventra MyEID-card because the card is locked and Aventra refuses to hand out the required PIN.
