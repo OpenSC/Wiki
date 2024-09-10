@@ -106,13 +106,6 @@ Optionally, discuss changes to _NEWS_ by opening a [new issue](https://github.co
 * In case of security relevant changes, forward the announcement to [oss-security@lists.openwall.com](https://www.openwall.com/lists/oss-security/)
 * Update the [Main Wiki page](https://github.com/OpenSC/OpenSC/wiki) with links to new release
 
-## Clean up old nightly builds repository
-
-* The repository [OpenSC/Nightly](https://github.com/OpenSC/Nightly) is used to hold nightly builds for both MacOS and Windows.
-* They are pushed on every master commit so the old builds need to be cleaned up regularly.
-* Ideally after the new release is done, any old branch before last release can be removed through the github web UI on [OpenSC/Nightly/branches/stale](https://github.com/OpenSC/Nightly/branches/stale).
-* For more info, see the [related issues](https://github.com/OpenSC/Nightly/issues/1)
-
 ## Releasing patch versions of OpenSC
 
 * Happens on exceptional basis only when fixing significant problems.
@@ -179,3 +172,23 @@ Optionally, discuss changes to _NEWS_ by opening a [new issue](https://github.co
 6. Wait for [artifacts to build](#build-and-test-binaries)
 7. [Create a new release](#build-and-test-binaries)
 8. Write [announcement](#announcement)
+
+## Maintenance tasks
+
+### Clean up old nightly builds repository
+
+* The repository [OpenSC/Nightly](https://github.com/OpenSC/Nightly) is used to hold nightly builds for both MacOS and Windows.
+* They are pushed on every master commit so the old builds need to be cleaned up regularly.
+* Ideally after the new release is done, any old branch before last release can be removed through the github web UI on [OpenSC/Nightly/branches/stale](https://github.com/OpenSC/Nightly/branches/stale).
+* For more info, see the [related issues](https://github.com/OpenSC/Nightly/issues/1)
+
+### Refreshing access tokens
+
+There are two access tokens that are used by CI to push artifacts to the Nightly repository. One from Github
+Actions and one from AppVeyor. Their expiration can be checked on the
+[organization settings](https://github.com/organizations/OpenSC/settings/personal-access-tokens/active) page.
+
+* When they expire, the new need tokens need to be generated in [user settings](https://github.com/settings/tokens?type=beta).
+* Both tokens need _Read_ and _Write_ access to code and _Read_ access to metadata in OpenSC/Nightly repository.
+* The Github Actions token needs to be inserted into the [OpenSC repository secrets](https://github.com/OpenSC/OpenSC/settings/secrets/actions).
+* The AppVeyor token needs to be encrypted using [AppVeyor website](https://ci.appveyor.com/account/frankmorgner/tools/encrypt) and updated in the `.appveyor.yml` for example like done in [#3230](https://github.com/OpenSC/OpenSC/pull/3230).
