@@ -61,7 +61,7 @@ The table below shows a list of all supported card drivers (`opensc-tool --list-
 
 | Smart Card Driver    | PKCS#11        | Windows Minidriver | macOS CTK  |
 | -------------------- | -------------- | -------------- | -------------- |
-| cardos               | :new_moon:     | :new_moon:     | :new_moon:     |
+| cardos               | :full_moon:     | :new_moon:     | :new_moon:     |
 | cyberflex            | :new_moon:     | :new_moon:     | :new_moon:     |
 | gemsafeV1            | :new_moon:     | :new_moon:     | :new_moon:     |
 | starcos              | :new_moon:     | :new_moon:     | :new_moon:     |
@@ -74,25 +74,25 @@ The table below shows a list of all supported card drivers (`opensc-tool --list-
 | epass2003            | :new_moon:     | :new_moon:     | :new_moon:     |
 | rutoken              | :new_moon:     | :new_moon:     | :new_moon:     |
 | rutoken_ecp          | :new_moon:     | :new_moon:     | :new_moon:     |
-| myeid                | :new_moon:     | :new_moon:     | :new_moon:     |
+| myeid                | :last_quarter_moon:     | :new_moon:     | :new_moon:     |
 | dnie                 | :new_moon:     | :new_moon:     | :new_moon:     |
 | MaskTech             | :new_moon:     | :new_moon:     | :new_moon:     |
 | esteid2018           | :new_moon:     | :new_moon:     | :new_moon:     |
-| idprime              | :new_moon:     | :new_moon:     | :new_moon:     |
+| idprime              | :waning_gibbous_moon:     | :new_moon:     | :new_moon:     |
 | coolkey              | :new_moon:     | :new_moon:     | :new_moon:     |
 | muscle               | :new_moon:     | :new_moon:     | :new_moon:     |
 | sc-hsm               | :new_moon:     | :new_moon:     | :new_moon:     |
 | mcrd                 | :new_moon:     | :new_moon:     | :new_moon:     |
 | setcos               | :new_moon:     | :new_moon:     | :new_moon:     |
-| PIV-II               | :new_moon:     | :new_moon:     | :new_moon:     |
-| cac                  | :new_moon:     | :new_moon:     | :new_moon:     |
+| PIV-II               | :last_quarter_moon:     | :new_moon:     | :new_moon:     |
+| cac                  | :full_moon:     | :new_moon:     | :new_moon:     |
 | itacns               | :new_moon:     | :new_moon:     | :new_moon:     |
-| isoApplet            | :new_moon:     | :new_moon:     | :new_moon:     |
-| gids                 | :new_moon:     | :new_moon:     | :new_moon:     |
-| openpgp              | :new_moon:     | :new_moon:     | :new_moon:     |
+| isoApplet            | :waning_gibbous_moon:     | :new_moon:     | :new_moon:     |
+| gids                 | :waning_gibbous_moon:     | :new_moon:     | :new_moon:     |
+| openpgp              | :waning_gibbous_moon:     | :new_moon:     | :new_moon:     |
 | jpki                 | :new_moon:     | :new_moon:     | :new_moon:     |
 | npa                  | :new_moon:     | :new_moon:     | :new_moon:     |
-| cac1                 | :new_moon:     | :new_moon:     | :new_moon:     |
+| cac1                 | :last_quarter_moon:     | :new_moon:     | :new_moon:     |
 | nqapplet             | :new_moon:     | :new_moon:     | :new_moon:     |
 | skeid                | :new_moon:     | :new_moon:     | :new_moon:     |
 | eOI                  | :new_moon:     | :new_moon:     | :new_moon:     |
@@ -102,9 +102,19 @@ The table below shows a list of all tested smart cards that were used:
 
 | Smart Card Driver | Tested Smart Cards                                               |
 | ----------------- | ---------------------------------------------------------------- |
-|                   |                                                                  |
-|                   |                                                                  |
-|                   |                                                                  |
+| PIV-II            | NIST Test Card v.1 9 (RSA2048), 4 (ECC), 13 (RSA1024, RSA2048)   |
+|                   | NIST Test Card v.2 15 (ECC), 16 (RSA2048)                        |
+|                   | Yubikey 4 OTP+U2F+CCID                                           |
+|                   | Thales IDPrime PIV v3.0 (detection only)                         |
+|                   | PivApplet (JCardSim)                                             |
+| myeid             | Aventra MyEID v4.5 PKI card (RSA2045, ECC), Aventra MyEID v4.5.5, OsEID |
+| cac               | CAC Test Cards (Oberthur ID One, Gemalto GCX4), virt_CACard      |
+| cac1              | CAC test cards (detection only)                                  |
+| gids              | GIDS Applet (JCardSim)                                           |
+| openpgp           | OpenPGP Applet  (JCardSim), NitroKey Start (gnuk)                |
+| isoApplet         | IsoApplet v0 and v1 (JCardSim)                                   |
+| cardos            | CardOS 5.3 (2017, 2k RSA), CardOS 5.3 (2023, 4k RSA)             |
+| idprime           | IDPrime 940 (RSA & EC), IDPrime 930, IDPrime MD 830, IDPrime 3810 |
 
 ### OpenSC 0.25.0
 
