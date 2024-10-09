@@ -10,41 +10,58 @@ Optional features include magnetic stripe, signature panel, holograms, security 
 
 The cards can be personalized both visually and electrically by Aventra according to customer specifications, or the customers can personalize the cards themselves using ActivePerso Manager developed by Aventra, or software from other parties.
 
-MyEID is certified by Microsoft and supports Smart Card Plug and Play.
+Aventra participates in development and testing of OpenSC, keeping MyEID support up to date with new MyEID versions. 
 
-> MyEID version 4 has been released, adding support for Elliptic Curve Cryptography and many other new features.
+> MyEID is certified by Microsoft and supports Smart Card Plug and Play.
+
+> MyEID 5.0 will be released soon. It will be eIDAS and Common Criteria EAL4+ certified.  
 
 ## Aventra MyEID PKI applet
 
 The MyEID applet implements all the basic functionality of a Public Key Infrastructure (PKI) token specified in the most common international PKI standards, such as PKCS#15. Users optionally have a choice between different authentication methods to the token. Besides the standard PIN number, there are currently two other authentication mechanisms available. The GrIDsure® one time PIN is based on a pop-up challenge grid that is used to form a onetime PIN that cannot be used by outsiders watching the authentication. MyEID tokens are also compatible with PalmSecure™ biometric technology, which is based on the unique blood vein patterns in the palm of the user’s hand replacing the PIN.
+
+MyEID version 4 added support for Elliptic Curve Cryptography and many other new features.
+
+Aventra’s MyEID PKI Smart Card has evolved into version 4.5, adding support for 4096 bit RSA keys, faster operation and more storage space. MyEID 4.5 is based on NXP’s SmartMX2 SECID P60 microcontroller, with JCOP3 Java Card Operating System. This microcontroller replaces NXP’s older JCOP2 based modules.
+
+### New in MyEID 4.5
+EEPROM storage space is increased to 144 kilobytes. RSA keys are supported up to 4096 bit key length. MyEID 4.5 is faster than earlier versions in performing Elliptic curve cryptography and RSA operations with keys up to 2048 bit. 4096 bit operations are fast as well, with on card key generation taking around one minute and digital signature calculation around 3000-4000 milliseconds. MyEID 4.5 contains some new features for securely transferring symmetric keys between the card and outside world (key wrapping/unwrapping). 
 
 ### Technical details
 
 #### Platform
 
 * JavaCard™ from 2.2.1 and above, Global Platform 2.1.1
+* Since MyEID 4.5: JavaCard™ 3.0.4 with Global Platform 2.2.1 
 
 #### Supported standards and specifications
 
-* ISO/IEC 7816-4 to 7816-9
+* ISO/IEC 7816-4 to 7816-9, 7816-15
 * ISO/IEC 14443 T=CL and Mifare™
-* PKCS#15
+* PKCS#7, #11, #12, and #15
 * FINEID S4-1 and S4-2
+* Smart Card Minidriver Specification v7.07
 
+#### Common features
+* 512 - 4096 bit RSA cryptographic operations with on card key generation
+* 192 - 521 bit ECC operations with on card key generation
+* Secure random number generator (FIPS 140-2)
+* DES, 3DES, AES128, AES256 symmetric encryption algorithms
+* SHA-256, SHA-1 and MD5 one way hash algorithms
+* Since MyEID 4: ECDSA and ECDH operations
+  
 #### Other features
-
-* 512 bit to 4096 bit RSA cryptographic operations with on card key generation,
-* Secure random number generator (FIPS 140-2),
-* DES, 3DES, AES128, AES256 symmetric encryption algorithms,
-* 144K EEPROM memory,
-* Since MyEID 4: ECDSA and ECDH operations.
-
+* 144K EEPROM memory Dual Interface version supports ISO/IEC 14443 T=CL and Mifare™ Flex
+  
 #### Compatible software
 
 * OpenSC
 * Aventra MyEID Minidriver for Windows
 * Fujitsu mPollux DigiSign™ middleware
-* Large number of third party software products that support Microsoft Cryptography API: Next Generation (CNG) or PKCS#11 Token Interface
+* Versasec vSEC:CMS
+* Citrix™
+* Cisco VPN Client
+* Large number of software products that support Microsoft™ CryptoAPI, Microsoft Cryptography API: Next Genration (CNG) or PKCS#11 Token Interface
 
 ## OpenSC support
 
@@ -127,10 +144,11 @@ The setting in the `opensc.conf` (usually in `/etc` or `/etc/opensc`) config fil
 
 Card details can found in [Reference manual](https://aventra.fi/wp-content/uploads/2024/03/MyEID-PKI-JavaCard-Applet-Reference-Manual.pdf).
 
-Cards can be bought from Aventra as blank cards or according to customer specifications regarding appearance etc. Small quantities of cards and readers can be easily bought from the web shop. For larger quantities contact Aventra sales for a quote.  
+Cards can be bought from Aventra as blank cards or according to customer specifications regarding appearance etc. Small quantities of cards and readers can be easily bought from the [web shop](https://shop.aventra.fi/). For larger quantities contact Aventra sales for a quote.  
 
-* [Aventra Ltd.](https://aventra.fi/)
-* [Web shop](https://webservices.aventra.fi/webshop/)
+* [Aventra website](https://aventra.fi/)
+* [Web shop](https://shop.aventra.fi/)
+* [Downloads](https://aventra.fi/downloads/)
 
 ### About Aventra
 
