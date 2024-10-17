@@ -71,7 +71,7 @@ The table below shows a list of all supported card drivers (`opensc-tool --list-
 | iasecc               | :new_moon:     | :new_moon:     | :new_moon:     |
 | belpic               | :new_moon:     | :new_moon:     | :new_moon:     |
 | entersafe            | :new_moon:     | :new_moon:     | :new_moon:     |
-| epass2003            | :new_moon:     | :new_moon:     | :new_moon:     |
+| epass2003            | :waning_gibbous_moon:     | :new_moon:     | :new_moon:     |
 | rutoken              | :new_moon:     | :new_moon:     | :new_moon:     |
 | rutoken_ecp          | :new_moon:     | :new_moon:     | :new_moon:     |
 | myeid                | :last_quarter_moon:     | :new_moon:     | :new_moon:     |
@@ -115,6 +115,7 @@ The table below shows a list of all tested smart cards that were used:
 | isoApplet         | IsoApplet v0 and v1 (JCardSim)                                   |
 | cardos            | CardOS 5.3 (2017, 2k RSA), CardOS 5.3 (2023, 4k RSA)             |
 | idprime           | IDPrime 940 (RSA & EC), IDPrime 930, IDPrime MD 830, IDPrime 3810 |
+| epass2003         | ePass2003 PKI Token (2023)                                       |
 
 ### OpenSC 0.25.0
 
