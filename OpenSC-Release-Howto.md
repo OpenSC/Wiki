@@ -13,7 +13,8 @@ Releasing OpenSC should be simple and streamlined, yet a predictable and easily 
 ## Preparing Security Relevant Changes
 
 * Request a CVE in case of security relevant fixes or changes.
-  * Use Red Hat product security at `secalert@redhat.com` describing the CVE and ask for CVE allocation. Do NOT use mitre directly as their response times are terrible.
+  * Use Red Hat product security at `secalert@redhat.com` describing the CVE and ask for CVE allocation.
+    * Do NOT use mitre directly as their response times are terrible.
   * Filter OSS-Fuzz for [security relevant issues](https://oss-fuzz.com/testcases?open=no&security=yes) that were fixed for this release
   * Filter Coverity scan for _High_ impact issues that were fixed for this release
 * Update the [security advisories](https://github.com/OpenSC/OpenSC/wiki/OpenSC-security-advisories)
@@ -35,20 +36,20 @@ Release (or RC) version must be changed in the following files:
 * `configure.ac` : Update the [LT version number](https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html), which is required with changes to, for example, `opensc.h` and `libopensc.exports`.
 * `.appveyor.yml`: Update the version on first line
 * `README.md`: Update the links to the new release and binaries
-* `SECURITY.md`
+* `SECURITY.md`: Update supported version
 
-Optionally, discuss changes to _NEWS_ by opening a [new issue](https://github.com/OpenSC/OpenSC/issues/new) with your suggestions.
+Optionally, discuss changes to `NEWS` by opening a [new issue](https://github.com/OpenSC/OpenSC/issues/new) with your suggestions.
 
-## Build and Test Binaries
+### Build and Test Binaries
 
 1. Create release tag
     * _Lightweight_ tag for release candidate
-      * Via GitHub when creating release - GitHub will automatically create _*-rcX_ as lightweight tag
+      * Via GitHub when creating release - GitHub will automatically create `*-rcX` as lightweight tag
       * Locally with git
 
         ```bash
         git tag 0.20.0
-          git push origin 0.20.0
+        git push origin 0.20.0
         ```
 
     * _Annotated_ tag for final release
@@ -60,7 +61,7 @@ Optionally, discuss changes to _NEWS_ by opening a [new issue](https://github.co
         ```
 
 2. Prepare build artifacts
-    * Wait around 50 minutes (after pushing the tag) to allow build artifacts be placed into the [nightly builds](https://github.com/OpenSC/Nightly)
+    * Wait around 30-50 minutes (after pushing the tag) to allow build artifacts be placed into the [Nightly Builds](https://github.com/OpenSC/Nightly)
     * All builds must succeed and must not generate more warnings than the previous build.
     * Copy build artifacts selecting the correct branch using the hash of the release commit, e.g.
 
@@ -72,25 +73,33 @@ Optionally, discuss changes to _NEWS_ by opening a [new issue](https://github.co
       unzip ${BRANCH}.zip
       ```
 
+    * Recreate the macOS image and Windows Debug files
+
+      ```bash
+      cat OpenSC*.dmg.* > OpenSC-0.XX.0.dmg
+      cat OpenSC-*_win64-Debug.zip.* > OpenSC-0.XX.0_win64-Debug.zip
+      ```
+
+    * For final releases, download signed Windows installers from Signpath.io instead of unsigned installers from AppVeyor (i.e. Nightly builds):
+      1. Navigate to [Signpath's outstanding Signing Requests](https://app.signpath.io/Web/8d2463fe-39bd-4a41-bb72-f008b4b1fe17/SigningRequests)
+      2. Select the ones that were issued with the creation of the release branch
+      3. Check the signing request's Build data URL to match the related AppVeyor build that was triggered with creation of the release branch
+      4. Approve signing and wait for completion of the signing process
+      5. Download signed artifact from Signpath.io
     * Do a separate smoke test for all installers and the tarball, [document your results in the Wiki](https://github.com/OpenSC/OpenSC/wiki/Smart-Card-Release-Testing).
 
-3. Create a [new (draft) release](https://github.com/OpenSC/OpenSC/releases):
-    * Describe the release including all changes to NEWS (Markdown)
-    * Select appropriate tag (when pushed before) or create new one in GitHub (for lightweight tags only)
-      * For final releases, select the existing tag, e.g. _0.20.0_; for release candidates choose a new tag, e.g. _0.20.0-rc1_
-    * Upload the build artifacts to the new release
-      * release tarball, OSX installer, 2 variants (default, light) of Windows installer for both 64b and 32b + separate debug archives
-      * For final releases, download signed Windows installers from Signpath.io instead of unsigned installers from AppVeyor (i.e. Nightly builds):
+## Create release
 
-        1. Navigate to [Signpath's outstanding Signing Requests](https://app.signpath.io/Web/8d2463fe-39bd-4a41-bb72-f008b4b1fe17/SigningRequests)
-        2. Select the ones that were issued with the creation of the release branch
-        3. Check the signing request's Build data URL to match the related AppVeyor build that was triggered with creation of the release branch
-        4. Approve signing and wait for completion of the signing process
-        5. Download signed artifact from Signpath.io
-        6. Upload signed artifact to Github Release
-    * Check:
-      * _This is a pre-release_ if only creating a release candidate
-      * _Set as latest release_ if creating final release
+* A new (draft) release is created via button on the [release page]((https://github.com/OpenSC/OpenSC/releases))
+* Describe the release including all changes to NEWS (Markdown)
+* Select appropriate tag (when pushed before) or create new one in GitHub (for lightweight tags only)
+  * For final releases, select the existing tag, e.g. `0.20.0`; for release candidates choose a new tag, e.g. `0.20.0-rc1`
+* Upload the build artifacts to the new release
+  * From **Nightly Builds**: Release tarball, OSX installer, 2 variants (default, light) of Windows separate debug archives for both 64b and 32b
+  * From **Signpath.io**: 2 variants (default, light) of Windows installer for both 64b and 32b
+* Check:
+  * `This is a pre-release` if only creating a release candidate
+  * `Set as latest release` if creating final release
 
 ## Announcement
 
