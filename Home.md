@@ -9,6 +9,7 @@ Do NOT attempt to add them here or use any links from wiki to download software 
 
 ## News
 
+* 13.11.2024: [OpenSC 0.26.0](https://github.com/OpenSC/OpenSC/releases/tag/0.26.0) is available.
 * 05.04.2024: [OpenSC 0.25.1](https://github.com/OpenSC/OpenSC/releases/tag/0.25.1) is available.
 * 06.03.2024: [OpenSC 0.25.0](https://github.com/OpenSC/OpenSC/releases/tag/0.25.0) is available.
 * 13.12.2023: [OpenSC 0.24.0](https://github.com/OpenSC/OpenSC/releases/tag/0.24.0) is available.
