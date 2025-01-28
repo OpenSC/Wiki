@@ -101,13 +101,7 @@ cp win32/winconfig.h config.h
 #### Manually Creating Built Source Files
 
 ```powershell
-copy src\minidriver\versioninfo-minidriver.rc.in src\minidriver\versioninfo-minidriver.rc
-copy src\pkcs11\versioninfo-pkcs11.rc.in src\pkcs11\versioninfo-pkcs11.rc
-copy src\pkcs11\versioninfo-pkcs11-spy.rc.in src\pkcs11\versioninfo-pkcs11-spy.rc
-copy src\tools\versioninfo-tools.rc.in src\tools\versioninfo-tools.rc
 copy win32\OpenSC.wxs.in win32\OpenSC.wxs
-copy win32\versioninfo-customactions.rc.in win32\versioninfo-customactions.rc
-copy win32\versioninfo.rc.in win32\versioninfo.rc
 copy win32\winconfig.h.in win32\winconfig.h
 ```
 
