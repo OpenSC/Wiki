@@ -99,6 +99,8 @@ openpgp-tool --verify CHV3 --pin 12345678 --gen-key 1 --key-len 1024
 
 In which, `--genkey 3` means that we're generating key with ID=3. The three keys in the have these IDs: Singing key: 1, Decryption key: 2, Authentication: 3.
 
+Generating non-RSA keys is not yet implemented in `openpgp-tool`.
+
 `--key-length 1024` means that the key is 1024-bit. We can specify bit length: 1024, 2048, 3072, 4096.
 If this option is absent, default key length 2048-bit is used.
 +Gnuk:+ Gnuk only supports 2048-bit key, so don’t specify `--key-length` option, you also have to delete old key before generating or import new one.
