@@ -44,9 +44,9 @@ This is an incomplete list of (mostly open source) **end-user applications** tha
 
 ### Legally binding (non-repudiation) signature software
 
-* DigiDocClient3 (also known as qdigidoc) implements DigiDoc/BDOC format (a [XAdES](https://uri.etsi.org/01903/v1.1.1/) profile). This obsoletes gdigidoc.
-  * DigiDoc is the official legally binding signature format used in Estonia (and Latvia and Lithuania).
-  * Companion utility, DigiDoc3Crypto provides encryption functionality.
+* [DigiDoc4](http://github.com/open-eid/DigiDoc4-Client) (also known as qdigidoc/qdigidoc4) implements ASiC-S/E format (a [XAdES](https://uri.etsi.org/01903/v1.3.2/) profile) and some legacy formats.
+  * DigiDoc4 is the official legally binding signature format used in Estonia (and Latvia and Lithuania).
+  * Provides encryption/decryption functionality.
 * [j4sign (freesign)](https://j4sign.sourceforge.io/) is a multiplatform open source legal signature software with PKCS#11 support. Currently in Italian.
 
 ## Local authentication / login
