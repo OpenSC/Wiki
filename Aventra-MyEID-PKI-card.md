@@ -159,3 +159,4 @@ Aventra offers a complete portfolio of card products ranging from simple plastic
 * Card requires a PUK code when creating a PIN code (fails to create a PIN without a PUK).
 * A minidriver is available for download [here](https://aventra.fi/downloads/).
 * You can **not** upload custom Java-Applets like the openpgpcard-applet to the Aventra MyEID-card because the card is locked and Aventra refuses to hand out the required PIN. Please contact Aventra if you have any special needs or requests.
+* Card ([MyEID 4.5 PKI card](https://shop.aventra.fi/en/products/myeid-4-5-pki-kortti)) works well with a card reader offered at Aventra's website (e.g., ACS [APG8201-B2](https://shop.aventra.fi/en/products/apg8201-b2-kortinlukija-numeronappaimilla), but seems to wear off when used with the reader REINER SCT [cyberJack® one](https://www.reiner-sct.com/produkt/cyberjack-one/) up to the point that it doesn't work anymore after some time (a few months).
