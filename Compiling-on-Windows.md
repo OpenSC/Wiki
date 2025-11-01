@@ -52,7 +52,6 @@ nmake -f win32/Makefile.msc AS=ml64 LOC="-DASMV -DASMINF -I." OBJA="inffasx64.ob
 
 Change `win32/Make.rules.mak` according to your desired build configuration. Specifically, you may want to change
 
-* `WIX` for WiX Toolset
 * `OPENSSL_DEF` for OpenSSL
 * `OPENPACE_DEF` and `OPENPACE_DIR` for OpenPACE
 * `ZLIBSTATIC_DEF`, `ZLIB_LIB` and `ZLIB_INCL_DIR` for zlib
