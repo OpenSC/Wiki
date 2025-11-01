@@ -3,7 +3,6 @@
 ## Build Requirements
 
 * New Microsoft's [Cryptographic Provider Development Kit](https://www.microsoft.com/en-us/download/details.aspx?id=30688)
-* [WiX Toolset](http://wixtoolset.org/)
 * [OpenSSL](https://www.openssl.org/) (optional)
 * [OpenPACE](https://frankmorgner.github.io/openpace/) (optional)
 * [zlib](https://zlib.net/) (optional)
@@ -47,24 +46,6 @@ Compile the library for 64 bit:
 nmake -f win32/Makefile.msc AS=ml64 LOC="-DASMV -DASMINF -I." OBJA="inffasx64.obj gvmat64.obj inffas8664.obj" zlib.lib
 ```
 
-### CPDK
-
-When the new CPDK is used, you shall update the Include path:
-
-```diff
---- a/win32/Make.rules.mak
-+++ b/win32/Make.rules.mak
-@@ -131,7 +131,7 @@ CANDLEFLAGS = -dOpenPACE="$(OPENPACE_DIR)" $(CANDLEFLAGS)
-
-
- # Used for MiniDriver
--CNGSDK_INCL_DIR = "/IC:\Program Files (x86)\Microsoft CNG Development Kit\Include"
-+CNGSDK_INCL_DIR = "/IC:\Program Files (x86)\Windows Kits\10\Cryptographic Provider Development Kit\Include"
- !IF "$(PROCESSOR_ARCHITECTURE)" == "x86" && "$(PROCESSOR_ARCHITEW6432)" == ""
- CNGSDK_INCL_DIR = "/IC:\Program Files\Microsoft CNG Development Kit\Include"
- !ENDIF</code></pre>
-```
-
 ## Build Configuration
 
 ### Edit `Make.rules.mak`
@@ -76,44 +57,13 @@ Change `win32/Make.rules.mak` according to your desired build configuration. Spe
 * `OPENPACE_DEF` and `OPENPACE_DIR` for OpenPACE
 * `ZLIBSTATIC_DEF`, `ZLIB_LIB` and `ZLIB_INCL_DIR` for zlib
 
-### Creation of Build Source Files
-
-#### Creating Built Source Files Using Autoconf
-
-Use [Cygwin](https://cygwin.com/install.html) or [MSYS2](http://www.msys2.org/) to install
-
-* autoconf
-* automake
-* libtool
-* make
-* gcc or mingw-w64 (will not be used for build)
-* pkg-config
-
-Open a Cygwin/MSYS2 terminal or console and change to the OpenSC directory (the previously installed tools need to be found in the `%PATH%`). Create the built source files:
-
-```powershell
-autoreconf -i
-./configure --disable-openssl --disable-readline --disable-zlib
-make -C etc opensc.conf
-cp win32/winconfig.h config.h
-```
-
-#### Manually Creating Built Source Files
-
-```powershell
-copy win32\OpenSC.wxs.in win32\OpenSC.wxs
-copy win32\winconfig.h.in win32\winconfig.h
-```
-
-The resulting files still contain strings that are encapsulated in @@@. You need to replace these place holders with meaningful values.
-
 ## Build OpenSC
 
 Open a Visual Studio _Developer Command Prompt_ and change to the OpenSC directory. Build the OpenSC binaries and installer:
 
 ```powershell
 nmake /f Makefile.mak
-cd win32
+powershell -ExecutionPolicy ByPass -File .github\setup-wix.ps1
 nmake /f Makefile.mak OpenSC.msi
 ```
 
