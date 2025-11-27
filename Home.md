@@ -9,6 +9,8 @@ Do NOT attempt to add them here or use any links from wiki to download software 
 
 ## News
 
+* 30.03.2026: **SECURITY**: Data handling issues prior to 0.27.0 (CVE-2025-49010, CVE-2025-66037, CVE-2025-66038, CVE-2025-13763, CVE-2025-66215), see [security advisories](OpenSC-security-advisories).
+* 30.03.2026: [OpenSC 0.27.0](https://github.com/OpenSC/OpenSC/releases/tag/0.27.0) is available.
 * 14.01.2025: [OpenSC 0.26.1](https://github.com/OpenSC/OpenSC/releases/tag/0.26.1) is available.
 * 13.11.2024: [OpenSC 0.26.0](https://github.com/OpenSC/OpenSC/releases/tag/0.26.0) is available.
 * 05.04.2024: [OpenSC 0.25.1](https://github.com/OpenSC/OpenSC/releases/tag/0.25.1) is available.

@@ -2,6 +2,13 @@
 
 Software often contains bugs, so does OpenSC. Be aware of the following security issues (in addition to overall [security considerations](Security-Considerations)) and upgrade to latest released version if needed.
 
+* 30.03.2026 Several data handling issues affecting releases before 0.27.0
+  * [CVE-2025-49010](CVE-2025-49010): Possible write beyond buffer bounds during processing of GET RESPONSE APDU
+  * [CVE-2025-66037](CVE-2025-66037): Possible buffer overrun while parsing SPKI
+  * [CVE-2025-66038](CVE-2025-66038): Possible read beyond buffer bounds when parsing historical bytes in PIV driver
+  * [CVE-2025-13763](CVE-2025-13763): Various uninitialized memory usage during card detection in libopensc
+  * [CVE-2025-66215](CVE-2025-66215): Possible write beyond buffer bounds in oberthur driver
+  * More low-severity data handling issues when parsing profile configuration
 * 05.09.2024 Heap buffer overflow issue has been identified in OpenSC driver for OpenPGP [CVE-2024-8443](CVE-2024-8443)
 * 04.09.2024 Uninitialized memory issues have been identified in OpenSC
   * [CVE-2024-45615](CVE-2024-45615): Usage of uninitialized values in libopensc and pkcs15init
