@@ -32,11 +32,11 @@ Once the commit is merged to this repository, it needs to be manually pushed
 to the OpenSC wiki. Recommended approach is to configure the opensc wiki
 remote in your git client:
 ```
-git remote add opensc.wiki https://github.com/OpenSC/OpenSC.wiki.git
+git remote add opensc.wiki git@github.com:OpenSC/OpenSC.wiki.git
 ```
 and once there is a change, pull it locally and push it to the opensc.wiki
 ```
-git pull origin
+git pull origin master
 git push opensc.wiki
 ```
 
