@@ -62,7 +62,7 @@ The table below shows a list of all supported card drivers (`opensc-tool --list-
 
 | Smart Card Driver    | PKCS#11        | Windows Minidriver | macOS CTK  |
 | -------------------- | -------------- | -------------- | -------------- |
-| cardos               | :new_moon:     | :new_moon:     | :new_moon:     |
+| cardos               | :full_moon:    | :new_moon:     | :new_moon:     |
 | cyberflex            | :new_moon:     | :new_moon:     | :new_moon:     |
 | gemsafeV1            | :new_moon:     | :new_moon:     | :new_moon:     |
 | starcos              | :new_moon:     | :new_moon:     | :new_moon:     |
@@ -75,22 +75,22 @@ The table below shows a list of all supported card drivers (`opensc-tool --list-
 | epass2003            | :new_moon:     | :new_moon:     | :new_moon:     |
 | rutoken              | :new_moon:     | :new_moon:     | :new_moon:     |
 | rutoken_ecp          | :new_moon:     | :new_moon:     | :new_moon:     |
-| myeid                | :new_moon:     | :new_moon:     | :new_moon:     |
+| myeid                | :full_moon:    | :new_moon:     | :new_moon:     |
 | dnie                 | :new_moon:     | :new_moon:     | :new_moon:     |
 | MaskTech             | :new_moon:     | :new_moon:     | :new_moon:     |
 | esteid2018           | :new_moon:     | :new_moon:     | :new_moon:     |
-| idprime              | :new_moon:     | :new_moon:     | :new_moon:     |
-| coolkey              | :new_moon:     | :new_moon:     | :new_moon:     |
+| idprime              | :full_moon:    | :new_moon:     | :new_moon:     |
+| coolkey              | :full_moon:    | :new_moon:     | :new_moon:     |
 | muscle               | :new_moon:     | :new_moon:     | :new_moon:     |
-| sc-hsm               | :new_moon:     | :new_moon:     | :new_moon:     |
+| sc-hsm               | :full_moon:    | :new_moon:     | :new_moon:     |
 | mcrd                 | :new_moon:     | :new_moon:     | :new_moon:     |
 | setcos               | :new_moon:     | :new_moon:     | :new_moon:     |
-| PIV-II               | :new_moon:     | :new_moon:     | :new_moon:     |
-| cac                  | :new_moon:     | :new_moon:     | :new_moon:     |
+| PIV-II               | :full_moon:    | :new_moon:     | :new_moon:     |
+| cac                  | :full_moon:    | :new_moon:     | :new_moon:     |
 | itacns               | :new_moon:     | :new_moon:     | :new_moon:     |
 | isoApplet            | :new_moon:     | :new_moon:     | :new_moon:     |
 | gids                 | :new_moon:     | :new_moon:     | :new_moon:     |
-| openpgp              | :new_moon:     | :new_moon:     | :new_moon:     |
+| openpgp              | :full_moon:    | :new_moon:     | :new_moon:     |
 | jpki                 | :new_moon:     | :new_moon:     | :new_moon:     |
 | npa                  | :new_moon:     | :new_moon:     | :new_moon:     |
 | cac1                 | :new_moon:     | :new_moon:     | :new_moon:     |
@@ -103,7 +103,24 @@ The table below shows a list of all tested smart cards that were used:
 
 | Smart Card Driver | Tested Smart Cards                                               |
 | ----------------- | ---------------------------------------------------------------- |
-|                   |                                                                  |
+| PIV-II            | YubiKey 5 NFC (fw 5.4.3)                                         |
+|                   | ID-One PIV TEST CARD 1, 2, 3, 4                                  |
+|                   | Old Nist Test PIV Cards 6, 7, 9, 10, 12, 13, 14, 16              |
+|                   | New Nist Test PIV Cards 15, 16                                   |
+| openpgp           | YubiKey 5 NFC (fw 5.4.3) with OPENSC_DRIVER=openpgp              |
+|                   | Nitrokey start (FSIJ-1.2.10-43245521)                            |
+| epass2003         | Feitian ePass2003 (gitlab CI)                                    |
+| sc-hsm            | SmartCard-HSM 4K USB-Token (2023, CI)                            |
+| coolkey           | test card (CI)                                                   |
+| cac               | test card (CI), another test card, Alt token                     |
+| idprime           | IDPrime 930, IDPrime 3810, IDPrime 940 (4k RSA, ECC)             |
+| cardos            | Cardos 5.3 (2017, 2023)                                          |
+| myeid             | Aventra MyEID 4.5
+
+
+Notes: Recent OpenSSL does not allow SHA1 hashes anymore so the `pkcs11-tool --test` fails
+in Fedora 43 now. Running the tests with `OPENSSL_ENABLE_SHA1_SIGNATURES=1` works around
+this issue.
 
 ### OpenSC 0.26.0
 
