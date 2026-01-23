@@ -3,6 +3,7 @@
 ## Table of Contents
 
 * [Test Results](#test-results)
+  * [OpenSC 0.27.0](#opensc-0270)
   * [OpenSC 0.26.0](#opensc-0260)
   * [OpenSC 0.25.0](#opensc-0250)
   * [OpenSC 0.24.0](#opensc-0240)
@@ -49,6 +50,60 @@
 * :last_quarter_moon: Some tests passed
 * :waning_crescent_moon: Few tests passed
 * :new_moon: Untested
+
+### OpenSC 0.27.0
+
+| Installer    | Windows    | macOS       |
+| ------------ | ---------- | ----------- |
+| Installation | :new_moon: | :new_moon:  |
+| Removal      | :new_moon: | :new_moon:  |
+
+The table below shows a list of all supported card drivers (`opensc-tool --list-drivers`) that have been tested in this release:
+
+| Smart Card Driver    | PKCS#11        | Windows Minidriver | macOS CTK  |
+| -------------------- | -------------- | -------------- | -------------- |
+| cardos               | :new_moon:     | :new_moon:     | :new_moon:     |
+| cyberflex            | :new_moon:     | :new_moon:     | :new_moon:     |
+| gemsafeV1            | :new_moon:     | :new_moon:     | :new_moon:     |
+| starcos              | :new_moon:     | :new_moon:     | :new_moon:     |
+| tcos                 | :new_moon:     | :new_moon:     | :new_moon:     |
+| oberthur             | :new_moon:     | :new_moon:     | :new_moon:     |
+| authentic            | :new_moon:     | :new_moon:     | :new_moon:     |
+| iasecc               | :new_moon:     | :new_moon:     | :new_moon:     |
+| belpic               | :new_moon:     | :new_moon:     | :new_moon:     |
+| entersafe            | :new_moon:     | :new_moon:     | :new_moon:     |
+| epass2003            | :new_moon:     | :new_moon:     | :new_moon:     |
+| rutoken              | :new_moon:     | :new_moon:     | :new_moon:     |
+| rutoken_ecp          | :new_moon:     | :new_moon:     | :new_moon:     |
+| myeid                | :new_moon:     | :new_moon:     | :new_moon:     |
+| dnie                 | :new_moon:     | :new_moon:     | :new_moon:     |
+| MaskTech             | :new_moon:     | :new_moon:     | :new_moon:     |
+| esteid2018           | :new_moon:     | :new_moon:     | :new_moon:     |
+| idprime              | :new_moon:     | :new_moon:     | :new_moon:     |
+| coolkey              | :new_moon:     | :new_moon:     | :new_moon:     |
+| muscle               | :new_moon:     | :new_moon:     | :new_moon:     |
+| sc-hsm               | :new_moon:     | :new_moon:     | :new_moon:     |
+| mcrd                 | :new_moon:     | :new_moon:     | :new_moon:     |
+| setcos               | :new_moon:     | :new_moon:     | :new_moon:     |
+| PIV-II               | :new_moon:     | :new_moon:     | :new_moon:     |
+| cac                  | :new_moon:     | :new_moon:     | :new_moon:     |
+| itacns               | :new_moon:     | :new_moon:     | :new_moon:     |
+| isoApplet            | :new_moon:     | :new_moon:     | :new_moon:     |
+| gids                 | :new_moon:     | :new_moon:     | :new_moon:     |
+| openpgp              | :new_moon:     | :new_moon:     | :new_moon:     |
+| jpki                 | :new_moon:     | :new_moon:     | :new_moon:     |
+| npa                  | :new_moon:     | :new_moon:     | :new_moon:     |
+| cac1                 | :new_moon:     | :new_moon:     | :new_moon:     |
+| nqapplet             | :new_moon:     | :new_moon:     | :new_moon:     |
+| skeid                | :new_moon:     | :new_moon:     | :new_moon:     |
+| eOI                  | :new_moon:     | :new_moon:     | :new_moon:     |
+| default              | :new_moon:     | :new_moon:     | :new_moon:     |
+
+The table below shows a list of all tested smart cards that were used:
+
+| Smart Card Driver | Tested Smart Cards                                               |
+| ----------------- | ---------------------------------------------------------------- |
+|                   |                                                                  |
 
 ### OpenSC 0.26.0
 
