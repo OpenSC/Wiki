@@ -73,19 +73,21 @@ Optionally, discuss changes to `NEWS` by opening a [new issue](https://github.co
       unzip ${BRANCH}.zip
       ```
 
-    * Recreate the macOS image and Windows Debug files
+    * Recreate the macOS image:
 
       ```bash
       cat OpenSC*.dmg.* > OpenSC-0.XX.0.dmg
-      cat OpenSC-*_win64-Debug.zip.* > OpenSC-0.XX.0_win64-Debug.zip
       ```
 
-    * For final releases, download signed Windows installers from Signpath.io instead of unsigned installers from AppVeyor (i.e. Nightly builds):
+    * Download signed Windows installers from Signpath.io:
       1. Navigate to [Signpath's outstanding Signing Requests](https://app.signpath.io/Web/8d2463fe-39bd-4a41-bb72-f008b4b1fe17/SigningRequests)
-      2. Select the ones that were issued with the creation of the release branch
-      3. Check the signing request's Build data URL to match the related AppVeyor build that was triggered with creation of the release branch
+      2. Select the ones that were issued with the creation of the release tag
+      3. Check the signing request's commit ID (under repository data) matches the commit pointed by release tag
       4. Approve signing and wait for completion of the signing process
-      5. Download signed artifact from Signpath.io
+      5. Download signed artifact from Signpath.io and extract them from zip archives
+
+    * Download debug zip archives for Windows from github artifacts (names matching the MSI from signpath with `-dbg` suffix)
+
     * Do a separate smoke test for all installers and the tarball, [document your results in the Wiki](https://github.com/OpenSC/OpenSC/wiki/Smart-Card-Release-Testing).
 
 ## Create release
