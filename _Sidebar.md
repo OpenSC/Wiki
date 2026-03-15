@@ -16,7 +16,7 @@
 * [[Getting involved in OpenSC development]]
 * [[Adding a new card driver]]
 * [[Compiling on Windows]]
-* [[Compiling on Cygwin]]
+* [[Using Git with a PKCS#11 Module]]
 * [[Environment variables]]
 * [[Creating applications with smart card support]]
 * [[Smart Card Simulation]]
