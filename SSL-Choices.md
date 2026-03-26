@@ -22,6 +22,10 @@ There are many different crypto libraries such as OpenSSL, GnuTLS, LibNSS, crypt
 
 [OpenSSL](http://www.openssl.org/) has an easy way to integrate smart card support.
 
+The OpenSSL 3 supports a plugin-like  provider API, which is implemented by the
+[pkcs11-provider](https://github.com/openssl-projects/pkcs11-provider). Upon configuring the provider in
+OpenSSL, applications can use the OpenSSL STORE API to list objects on token using PKCS#11 URIs.
+
 Our sister project
 [libp11](https://github.com/OpenSC/libp11) has code to make using OpenSC PKCS#11 module with OpenSSL quite easy and should include example code for using SSL with client certificate authentication using a smart card soo. Also the engine_pkcs11 project has a so called engine so you can change any code using OpenSSL to move the crypto operation from your CPU to your smart card with only a few small changes. `Wpa_supplicant` is an example of an application using OpenSSL and this engine for smart card support.
 
