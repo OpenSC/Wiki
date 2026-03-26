@@ -912,7 +912,7 @@ User is logged in. The *Log Out* button becomes available.
 
 **Preconditions:**
 
-* The web server is configured for client authentication with the token's certificate (for example [./gnutls-http-serv](https://gitlab.com/gnutls/gnutls/blob/master/doc/credentials/gnutls-http-serv) with `--x509cafile` with issuers certificate or certificate from the card).
+* The web server is configured for client authentication with the token's certificate (for example [./gnutls-http-serv](https://gitlab.com/gnutls/gnutls/blob/master/doc/credentials/gnutls-http-serv) with `--x509cafile` and `--require-client-cert` with issuers certificate or certificate from the card).
 
 **Test Steps:**
 
