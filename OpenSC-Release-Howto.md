@@ -35,7 +35,7 @@ Release (or RC) version must be changed in the following files:
 * `VERSION.mk` : change package version major/minor/fix as needed, RCs get the package suffix `-rc`, which is removed for the final release
 * `configure.ac` : Update the [LT version number](https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html), which is required with changes to, for example, `opensc.h` and `libopensc.exports`.
 * `.appveyor.yml`: Update the version on first line
-* `README.md`: Update the links to the new release and binaries
+* `packaging/opensc.spec`: Update the version number to match `VERSION.mk`
 * `SECURITY.md`: Update supported version
 
 Optionally, discuss changes to `NEWS` by opening a [new issue](https://github.com/OpenSC/OpenSC/issues/new) with your suggestions.
