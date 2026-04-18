@@ -61,23 +61,10 @@ Optionally, discuss changes to `NEWS` by opening a [new issue](https://github.co
         ```
 
 2. Prepare build artifacts
-    * Wait around 30-50 minutes (after pushing the tag) to allow build artifacts be placed into the [Nightly Builds](https://github.com/OpenSC/Nightly)
+    * Wait around 30-50 minutes (after pushing the tag) to allow build artifacts to be built
     * All builds must succeed and must not generate more warnings than the previous build.
-    * Copy build artifacts selecting the correct branch using the hash of the release commit, e.g.
 
-      ```bash
-      git clone https://github.com/OpenSC/OpenSC --single-branch
-      cd OpenSC
-      BRANCH=`git log --max-count=1 --date=short --abbrev=8 --pretty=format:"%cd_%h"`
-      wget https://github.com/OpenSC/Nightly/archive/${BRANCH}.zip
-      unzip ${BRANCH}.zip
-      ```
-
-    * Recreate the macOS image:
-
-      ```bash
-      cat OpenSC*.dmg.* > OpenSC-0.XX.0.dmg
-      ```
+    * Download signed MacOS installers from GH Actions (use the artifact `opensc-build-macos-15` from the `OSX` pipeline)
 
     * Download signed Windows installers from Signpath.io:
       1. Navigate to [Signpath's outstanding Signing Requests](https://app.signpath.io/Web/8d2463fe-39bd-4a41-bb72-f008b4b1fe17/SigningRequests)
