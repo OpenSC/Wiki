@@ -33,7 +33,7 @@ Find the public key associated with your hardware token:
 ssh-keygen -D "/path/to/opensc-pkcs11.so"
 ```
 
-Copy the output (e.g. lines starting with `ssh-rsa` or `ecdsa-sha2-nistp256`) and save it to a file, e.g., `~/.ssh/id_token.pub`. This output only contains your public key, it does *not* include a certificate that may be connected with that public key.
+Copy the output (e.g. lines starting with `ssh-rsa` or `ecdsa-sha2-nistp256`) and save it to a file, e.g., `~/.ssh/id_token.pub`. This output only contains your public key, it does *not* include a certificate that may be connected with that public key. Note, that only a single public key (line) per identity file is supported.
 
 ### Step 2: Configure Git
 
