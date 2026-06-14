@@ -2,67 +2,37 @@
 
 ## Build Requirements
 
-* New Microsoft's [Cryptographic Provider Development Kit](https://www.microsoft.com/en-us/download/details.aspx?id=30688)
-* [OpenSSL](https://www.openssl.org/) (optional)
-* [OpenPACE](https://frankmorgner.github.io/openpace/) (optional)
-* [zlib](https://zlib.net/) (optional)
+* Microsoft's [Cryptographic Provider Development Kit](https://www.microsoft.com/en-us/download/details.aspx?id=30688)
+* [vcpkg](https://vcpkg.io/)
 
-### Getting OpenSSL
+## Setup
 
-Prebuilt OpenSSL libraries are available [here](https://slproweb.com/products/Win32OpenSSL.html). Download and install the 32 bit or 64 bit package for your target platform. OpenSSL can then be found on `C:\OpenSSL-Win32` or `C:\OpenSSL-Win64` respectively.
-
-### Getting OpenPACE
-
-Download and unpack the source code of the [latest release of OpenPACE](https://github.com/frankmorgner/openpace/releases/latest). Open a Visual Studio _Developer Command Prompt_ and change to the OpenPACE's `src` directory. Compile the library:
+Install WiX:
 
 ```powershell
-set OPENSSL=C:\OpenSSL-Win64
+powershell -ExecutionPolicy ByPass -File win32\setup-wix.ps1
 ```
 
-When compiling for 32 bit, use
+Install dependencies via vcpkg:
 
 ```powershell
-set OPENSSL=C:\OpenSSL-Win32 
+$env:VCPKG_INSTALLED = "vcpkg_installed"
+$env:VCPKG_DEFAULT_TRIPLET = "x64-windows-static"
+vcpkg install `
+  --overlay-ports win32/ports `
+  --x-feature=zlib `
+  --x-feature=openpace `
+  --x-manifest-root win32 `
+  --x-install-root $env:VCPKG_INSTALLED
 ```
 
-```powershell
-cl /I%OPENSSL%\include /I. /DX509DIR=\"/\" /DCVCDIR=\"/\" /W3 /D_CRT_SECURE_NO_DEPRECATE /DWIN32_LEAN_AND_MEAN /GS /MT /c ca_lib.c cv_cert.c cvc_lookup.c x509_lookup.c eac_asn1.c eac.c eac_ca.c eac_dh.c eac_ecdh.c eac_kdf.c eac_lib.c eac_print.c eac_util.c misc.c pace.c pace_lib.c pace_mappings.c ri.c ri_lib.c ta.c ta_lib.c objects.c
-lib /out:libeac.lib ca_lib.obj cv_cert.obj cvc_lookup.obj x509_lookup.obj eac_asn1.obj eac.obj eac_ca.obj eac_dh.obj eac_ecdh.obj eac_kdf.obj eac_lib.obj eac_print.obj eac_util.obj misc.obj pace.obj pace_lib.obj pace_mappings.obj ri.obj ri_lib.obj ta.obj ta_lib.obj objects.obj
-```
-
-### Getting zlib
-
-Download and unpack the source code of the latest release of zlib. Open a Visual Studio _Developer Command Prompt_ and change to the zlib directory.
-
-Compile the library for 32 bit:
-
-```powershell
-nmake -f win32/Makefile.msc LOC="-DASMV -DASMINF" OBJA="inffas32.obj match686.obj" zlib.lib
-```
-
-Compile the library for 64 bit:
-
-```powershell
-nmake -f win32/Makefile.msc AS=ml64 LOC="-DASMV -DASMINF -I." OBJA="inffasx64.obj gvmat64.obj inffas8664.obj" zlib.lib
-```
-
-## Build Configuration
-
-### Edit `Make.rules.mak`
-
-Change `win32/Make.rules.mak` according to your desired build configuration. Specifically, you may want to change
-
-* `OPENSSL_DEF` for OpenSSL
-* `OPENPACE_DEF` and `OPENPACE_DIR` for OpenPACE
-* `ZLIBSTATIC_DEF`, `ZLIB_LIB` and `ZLIB_INCL_DIR` for zlib
+Omit --x-feature flags for features you don't need or skip this step if you do not need OpenSSL.
 
 ## Build OpenSC
 
 Open a Visual Studio _Developer Command Prompt_ and change to the OpenSC directory. Build the OpenSC binaries and installer:
 
 ```powershell
-nmake /f Makefile.mak
-powershell -ExecutionPolicy ByPass -File .github\setup-wix.ps1
 nmake /f Makefile.mak OpenSC.msi
 ```
 
