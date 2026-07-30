@@ -18,6 +18,7 @@ Supported eID cards:
 * [EstonianEid](Estonian-eID-(EstEID))
 * [PortugueseEid](Portuguese-eID)
 * [US CAC](US-CAC)
+* [UruguayanEid](Uruguayan-eID)
 
 ## Generic smart cards
 
