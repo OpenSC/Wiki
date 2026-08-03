@@ -31,6 +31,10 @@ run by [AGESIC](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informa
 Resources:
 
 * Official digital-identity information: [AGESIC](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento).
+* AGESIC's [technical documentation for the chip card](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/book/7192/download)
+  (PDF, in Spanish), which specifies the APDUs and the data-object layouts, and
+  the [reference APDU code](https://github.com/eIDuy/apdu-services) it publishes
+  alongside it.
 * [firmauy](https://github.com/carlosplanchon/firmauy): a third-party command-line
   tool to sign and verify PDF (PAdES), XML (XAdES) and arbitrary files
   (CAdES/.p7s) with the cédula over PKCS#11, with local certificate-chain
@@ -117,12 +121,15 @@ writes a single one to a file. Each object is a BER-TLV wrapper (tag, length,
 value), so getting the human-readable content means stripping the header and
 decoding the value:
 
-| Object label on card | Path | Tag | Length form | Value |
+| Object label on card | EF, under DF `7000` | Tag | Length form | Value |
 |---|---|---|---|---|
 | Numero de documento | `7001` | `5F 01` | short, 1 byte | ASCII digits |
-| Datos biograficos | `7002` | `1F xx`, one per field | short, 1 byte | UTF-8 text |
+| Datos biograficos | `7002` | `1F xx`, one per field | short, 1 byte | text, see below |
 | Fotografia | `7004` | `3F 01` | **long**, `81`/`82` + N bytes | JPEG |
 | MRZ | `700B` | `7F 01` | short, 1 byte | ASCII, fixed-width lines |
+
+The `pkcs15-tool` output above prints these as full paths (`3f0070007001` and so
+on), the EF column is the last two bytes of each.
 
 Only the photo exceeds 255 bytes, so it is the only object using a long-form
 length. These lengths were obtained by reading official documentation and experimentation. **Always read the length byte instead of assuming a fixed header size**.
@@ -130,9 +137,9 @@ length. These lengths were obtained by reading official documentation and experi
 ### Document number (`7001`)
 
 Tag `5F 01`, one length byte, then that many ASCII digits, so the value starts at
-offset 3.
+offset 3. The specification fixes that length at 9.
 
-This is a different field from the ID number in `7002` (tag `1F 07`); the two
+This is a different field from the ID number in `7002` (tag `1F 07`). The two
 usually differ in length and are not interchangeable.
 
 ### Biographic data (`7002`)
@@ -143,8 +150,12 @@ value, advance by 3 + length, and stop once the byte at the current offset is no
 longer `1F` (end of data or padding) or a declared length would overrun the
 buffer.
 
-Zero-length fields are normal, only the header is present. The text is **UTF-8**,
-not ASCII, decoding it as latin-1 gives mojibake on accented names.
+Zero-length fields are normal, only the header is present.
+
+The specification describes these values as ASCII, but that does not hold on real
+cards. The text fields are **UTF-8**, and decoding them as ASCII or latin-1 gives
+mojibake on accented names, which are common here. Not every field is text
+either, see `1F 08` below.
 
 | Tag | Field | Format |
 |---|---|---|
@@ -155,13 +166,33 @@ not ASCII, decoding it as latin-1 gives mojibake on accented names.
 | `1F 05` | Date of birth | `DDMMYYYY` |
 | `1F 06` | Place of birth | `CITY/COUNTRY`, country as alpha-3 |
 | `1F 07` | ID number | digits in ASCII, check digit last |
+| `1F 08` | Date of issue | 4 bytes, **packed BCD**, `DD MM YY YY` |
 | `1F 09` | Expiry date | `DDMMYYYY` |
 
-Cards have also been seen carrying `1F 08` and `1F 0A`, with no documented
-meaning. Surface unknown tags rather than dropping them.
+The specification only lists `1F 01` through `1F 06`, and fixes the length of two
+of them: `1F 04` is 3 bytes and `1F 05` is 8. The rows for `1F 07` to `1F 09`
+come from reading cards, not from the document.
 
-> **The surname split is not reliable.** The layout puts the second surname in
-> `1F 02`, but cards have been observed writing *both* surnames into `1F 01` and
+`1F 08` is the field the specification warns about without ever naming it: it
+says every value is ASCII *except* the date of issue, yet lists no tag for that
+date. It holds four bytes of packed BCD, two digits per byte, in `DD MM YY YY`
+order, and decoding it that way yields the date of issue printed on the card.
+
+> **`1F 08` will fool a non-ASCII check.** BCD bytes all stay below `0x80`, so
+> scanning for high bytes reports the field as ASCII, and decoding it as text
+> succeeds and returns punctuation instead of raising. A card issued this century
+> even carries a literal `0x20` for the `20` of the year, which reads as a space.
+> Decode this field as BCD, not as text, and do not infer the encoding of a field
+> from whether high bytes are present.
+
+`1F 0A` has also been seen, zero-length on every card read so far, with no
+documented meaning. AGESIC's reference code models one field that no tag accounts
+for, *observations*, which would fit. Surface unknown tags rather than dropping
+them, and do not assume any of them are ASCII.
+
+> **The surname split is not reliable.** The specification names `1F 01`
+> *PrimerApellido* (first surname) and `1F 02` *SegundoApellido* (second
+> surname), but cards have been observed writing *both* surnames into `1F 01` and
 > leaving `1F 02` zero-length. An empty `1F 02` therefore does not mean the holder
 > has a single surname, and splitting `1F 01` on whitespace is ambiguous with
 > compound surnames (*De León*, *Da Silva*). Label `1F 01` as *surname(s)*.
@@ -187,10 +218,20 @@ length: 90 characters is TD1 (3 lines of 30, the ID-card format), 88 is TD3
 (2 lines of 44, the passport format). Trailing runs of `<` are MRZ filler, not
 data.
 
+The specification does not state which layout the card carries, both figures are
+the ICAO 9303 ones. The 93-byte object in the dump above is a TD1 value plus its
+3-byte header.
+
 ## Notes
 
 * The ATR differs between card batches (the applet version and batch bytes), so
-  the driver matches it with a mask.
+  the driver matches it with a mask. The applet version is not derived from it,
+  it is read with `GET DATA` as described at the top of this page.
 * The identity data objects are readable without authentication by design, since
   the same data is printed on the card itself. Anything read out of them is still
   personal data, treat it accordingly.
+* **Reading these objects proves nothing about authenticity.** The ICAO Document
+  Security Object that signs them, EF `711D`, is absent on earlier card batches,
+  so the driver does not expose it, and AGESIC's own reference code reports the
+  data as unsigned whenever the file is missing. A portrait or an MRZ read this
+  way is unverified data.
