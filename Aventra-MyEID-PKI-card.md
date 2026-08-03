@@ -1,11 +1,11 @@
-# Aventra MyEID PKI card
+# Aventra MyEID PKI Smart Card
 
-Aventra MyEID PKI Card is a cryptographic smart card conforming to common Public Key Infrastructure standards like ISO7816 and PKCS#15.
-It can be used for various tasks requiring strong cryptography, e. g. logging securely to Windows, encrypting e-mail, authentication, and electronic signatures. The card is also available as a Dual Interface version, compatible with T=CL protocol and also emulating Mifare™. The card is a JavaCard with Aventra MyEID applet that implements the functionality.
+Aventra MyEID PKI Smart Card is a cryptographic smart card conforming to common Public Key Infrastructure standards like ISO7816 and PKCS#15.
+It can be used for various tasks requiring strong cryptography, e. g. logging securely to Windows, encrypting e-mail, authentication, and electronic signatures. The card is also available as a Dual Interface version, compatible with T=CL protocol and also emulating Mifare™ DESFire. The card is based on Java Card technology, with Aventra MyEID applet that implements the command interface and file system, and the security microcontroller which provides the cryptographic functionality.
 
-The card material is PVC as standard, making it suitable for visual personalization using thermal transfer or dye sublimation printers. Customer specific layouts can be delivered in offset and silk screen printing. Optional features include magnetic stripe, signature panel, holograms, security printing etc.
+The card material is PVC as standard, making it suitable for visual personalization using thermal transfer or dye sublimation printers. Customer specific layouts can be delivered in offset and silk screen printing. Optional features include signature panel, holograms, security printing etc. A SIM-sized version is available.
 
-The cards can be personalized both visually and electrically by Aventra according to customer specifications, or the customers can personalize the cards themselves using ActivePerso Manager developed by Aventra, or software from other parties.
+The cards can be personalized both visually and electrically by Aventra according to customer specifications, or the customers can personalize the cards themselves using Active Process Manager developed by Aventra, or software from other parties.
 
 Aventra participates in development and testing of OpenSC, keeping MyEID support up to date with new MyEID versions.
 
@@ -13,27 +13,30 @@ Aventra participates in development and testing of OpenSC, keeping MyEID support
 
 ## Aventra MyEID PKI applet
 
-The MyEID applet implements all the basic functionality of a Public Key Infrastructure (PKI) token specified in the most common international PKI standards, such as PKCS#15. Users optionally have a choice between different authentication methods to the token. Besides the standard PIN number, there are currently two other authentication mechanisms available. The GrIDsure® one time PIN is based on a pop-up challenge grid that is used to form a onetime PIN that cannot be used by outsiders watching the authentication. MyEID tokens are also compatible with PalmSecure™ biometric technology, which is based on the unique blood vein patterns in the palm of the user’s hand replacing the PIN.
+The MyEID applet implements all the basic functionality of a Public Key Infrastructure (PKI) token specified in the most common international PKI standards, such as ISO 7816-15. MyEID supports authentication with alphanumeric and challenge/response PIN codes. It can emulate a PIV/CIV card by mapping the ISO 7816-15 (PKCS#15) structure to the PIV/CIV command interface.
 
-MyEID 4 added support for Elliptic Curve Cryptography and many other new features. It can emulate a PIV/CIV card by mapping the ISO 7816-15 (PKCS#15) structure to the PIV/CIV command interface.
+> Aventra’s MyEID PKI Smart Card has evolved into version 5, based on NXP’s SmartMX3 microcontroller and JCOP 4 Java Card platform. 
+MyEID 5.0.0 is certified to Common Criteria EAL4+ level.
+### New in MyEID 5
 
-> Aventra’s MyEID PKI Smart Card has evolved into version 4.5, adding support for 4096 bit RSA keys, faster operation and more storage space. MyEID 4.5 is based on NXP’s SmartMX2 SECID P60 microcontroller, with JCOP3 Java Card Operating System. This microcontroller replaces NXP’s older JCOP2 based modules.
+EEPROM storage space is increased to 180 kilobytes. New features include:
+* Secure Messaging as specified in [NIST SP 800-73-5](https://csrc.nist.gov/pubs/sp/800/73/pt2/5/final)
+* Extended length APDUs
+* Challenge/response PINs with AES algorithm
+* Brainpool ECC curves
+* on-card PSS and OAEP padding
 
-### New in MyEID 4.5
-
-EEPROM storage space is increased to 144 kilobytes. RSA keys are supported up to 4096 bit key length. MyEID 4.5 is faster than earlier versions in performing Elliptic curve cryptography and RSA operations with keys up to 2048 bit. 4096 bit operations are fast as well, with on card key generation taking around one minute and digital signature calculation around 3000-4000 milliseconds. MyEID 4.5 contains some new features for securely transferring symmetric keys between the card and outside world (key wrapping/unwrapping).
 
 ### Technical details
 
 #### Platform
 
-* JavaCard™ from 2.2.1 and above, Global Platform 2.1.1
-* Since MyEID 4.5: JavaCard™ 3.0.4 with Global Platform 2.2.1
+* Since MyEID 5: JavaCard™ 3.0.5 with Global Platform 2.3
 
 #### Supported standards and specifications
 
 * ISO/IEC 7816-4 to 7816-9, 7816-15
-* ISO/IEC 14443 T=CL and Mifare™
+* ISO/IEC 14443 T=CL, Mifare™ DESFire EV2/EV3 interface available as an option
 * PKCS#7 and PKCS#15
 * FINEID S4-1 and S4-2
 * PIV
@@ -43,13 +46,13 @@ EEPROM storage space is increased to 144 kilobytes. RSA keys are supported up to
 * 512 - 4096 bit RSA cryptographic operations with on card key generation
 * 192 - 521 bit ECC operations with on card key generation
 * Secure random number generator (FIPS 140-2)
-* DES, 3DES, AES128, AES256 symmetric encryption algorithms
+* symmetric encryption algorithms with AES algorithm and 128, 192 and 256 bits key lengths.
 * SHA-256, SHA-1 and MD5 one way hash algorithms
 * Since MyEID 4: ECDSA and ECDH operations
   
 #### Other features
 
-* 144K EEPROM memory Dual Interface version supports ISO/IEC 14443 T=CL and Mifare™ Flex
+* 180K EEPROM memory Dual Interface version supports ISO/IEC 14443 T=CL and optionally Mifare™ DESFire EV2.
   
 #### Compatible software
 
@@ -101,11 +104,12 @@ pkcs15-init --generate-key ec:prime256v1 --auth-id 01 --so-pin 12345678 --pin 11
 
 ```
 
-When done creating PIN codes, finalize (activate) the card. After this all access conditions (PINs) are in effect. This is not mandatory, but before this is done card elements can be accessed without satisfying specified access conditions (without entering PIN codes).
+When done creating PIN codes, finalize (activate) the card. After this all access conditions (PINs) are in effect. This is not mandatory, but before this is done card elements can be accessed without satisfying specified access conditions (without entering PIN codes). 
 
 ```bash
 pkcs15-init -F
 ```
+**NOTE:** Since MyEID 5, cryptographic operations such as signature creation are not allowed before the card is finalized. This is to prevent accidentally forgetting the card in unfinalized state. Crypto-operations can be explicitly enabled in creation (unfinalized) state, see the reference manual for details.
 
 ### Smart card reader configuration
 
@@ -140,7 +144,7 @@ The setting in the `opensc.conf` (usually in `/etc` or `/etc/opensc`) config fil
 
 ## Links & other information
 
-Card details can found in [Reference manual](https://aventra.fi/wp-content/uploads/2024/03/MyEID-PKI-JavaCard-Applet-Reference-Manual.pdf).
+Card details can found in [Reference manual](https://aventra.fi/wp-content/uploads/2026/03/MyEID-PKI-Smart-Card-Reference-Manual-3-0-8-signed.pdf).
 
 Cards can be bought from Aventra as blank cards or according to customer specifications regarding appearance etc. Small quantities of cards and readers can be easily bought from the [web shop](https://shop.aventra.fi/). For larger quantities contact Aventra sales for a quote.  
 
