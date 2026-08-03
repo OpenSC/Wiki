@@ -110,9 +110,87 @@ Data object 'MRZ'
     Data (93 bytes): <machine-readable zone, redacted>
 ```
 
+## Decoding the identity data objects
+
+`pkcs15-tool -D` prints the objects as raw bytes, and `-R <label> -o <file>`
+writes a single one to a file. Each object is a BER-TLV wrapper (tag, length,
+value), so getting the human-readable content means stripping the header and
+decoding the value:
+
+| Object label on card | Path | Tag | Length form | Value |
+|---|---|---|---|---|
+| Numero de documento | `7001` | `5F 01` | short, 1 byte | ASCII digits |
+| Datos biograficos | `7002` | `1F xx`, one per field | short, 1 byte | UTF-8 text |
+| Fotografia | `7004` | `3F 01` | **long**, `81`/`82` + N bytes | JPEG |
+| MRZ | `700B` | `7F 01` | short, 1 byte | ASCII, fixed-width lines |
+
+Only the photo exceeds 255 bytes, so it is the only object using a long-form
+length. These lengths were obtained by reading official documentation and experimentation. **Always read the length byte instead of assuming a fixed header size**.
+
+### Document number (`7001`)
+
+Tag `5F 01`, one length byte, then that many ASCII digits, so the value starts at
+offset 3.
+
+This is a different field from the ID number in `7002` (tag `1F 07`); the two
+usually differ in length and are not interchangeable.
+
+### Biographic data (`7002`)
+
+A flat run of TLVs, each with a two-byte tag `1F xx` and a one-byte length. Walk
+the buffer from offset 0: read the tag and length, take that many bytes as the
+value, advance by 3 + length, and stop once the byte at the current offset is no
+longer `1F` (end of data or padding) or a declared length would overrun the
+buffer.
+
+Zero-length fields are normal, only the header is present. The text is **UTF-8**,
+not ASCII, decoding it as latin-1 gives mojibake on accented names.
+
+| Tag | Field | Format |
+|---|---|---|
+| `1F 01` | Surname(s) | UTF-8 text |
+| `1F 02` | Second surname | UTF-8 text, might be empty |
+| `1F 03` | Name(s) | UTF-8 text, all given names in one field |
+| `1F 04` | Nationality | ISO 3166-1 alpha-3 (e.g. `URY`) |
+| `1F 05` | Date of birth | `DDMMYYYY` |
+| `1F 06` | Place of birth | `CITY/COUNTRY`, country as alpha-3 |
+| `1F 07` | ID number | digits in ASCII, check digit last |
+| `1F 09` | Expiry date | `DDMMYYYY` |
+
+Cards have also been seen carrying `1F 08` and `1F 0A`, with no documented
+meaning. Surface unknown tags rather than dropping them.
+
+> **The surname split is not reliable.** The layout puts the second surname in
+> `1F 02`, but cards have been observed writing *both* surnames into `1F 01` and
+> leaving `1F 02` zero-length. An empty `1F 02` therefore does not mean the holder
+> has a single surname, and splitting `1F 01` on whitespace is ambiguous with
+> compound surnames (*De León*, *Da Silva*). Label `1F 01` as *surname(s)*.
+
+### Photo (`7004`)
+
+Tag `3F 01`, followed by a long-form length. The byte at offset 2 gives the
+header size: below `0x80` it is the length itself and the value starts at offset
+3, `0x81` means one more length byte and the value starts at 4, `0x82` means two
+and the value starts at 5. Portraits are a few tens of kilobytes, above the
+255-byte ceiling of `0x81` and below the 65535 of `0x82`, so `0x82` is the usual
+case.
+
+The value is a complete JPEG, no re-encoding needed: write it out as-is. It
+should start with `FF D8 FF` (SOI) and end with `FF D9` (EOI); if it does not,
+the length form was misread and the value offset is wrong.
+
+### MRZ (`700B`)
+
+Tag `7F 01`, one length byte, then that many ASCII characters starting at offset
+3. The value carries no line separators, so split it positionally by total
+length: 90 characters is TD1 (3 lines of 30, the ID-card format), 88 is TD3
+(2 lines of 44, the passport format). Trailing runs of `<` are MRZ filler, not
+data.
+
 ## Notes
 
 * The ATR differs between card batches (the applet version and batch bytes), so
   the driver matches it with a mask.
 * The identity data objects are readable without authentication by design, since
-  the same data is printed on the card itself.
+  the same data is printed on the card itself. Anything read out of them is still
+  personal data, treat it accordingly.
