@@ -190,10 +190,15 @@ documented meaning. AGESIC's reference code models one field that no tag account
 for, *observations*, which would fit. Surface unknown tags rather than dropping
 them, and do not assume any of them are ASCII.
 
+The two applet versions carry the same layout. A v4 and a v5 card read for this
+page both hold the same ten tags, `1F 01` to `1F 0A`, in the same order, with
+`1F 08` four bytes wide on both. Nothing here is specific to one generation.
+
 > **The surname split is not reliable.** The specification names `1F 01`
 > *PrimerApellido* (first surname) and `1F 02` *SegundoApellido* (second
 > surname), but cards have been observed writing *both* surnames into `1F 01` and
-> leaving `1F 02` zero-length. An empty `1F 02` therefore does not mean the holder
+> leaving `1F 02` zero-length. That was the case on both cards read for this page,
+> one of each applet version. An empty `1F 02` therefore does not mean the holder
 > has a single surname, and splitting `1F 01` on whitespace is ambiguous with
 > compound surnames (*De León*, *Da Silva*). Label `1F 01` as *surname(s)*.
 
