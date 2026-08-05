@@ -1,23 +1,30 @@
 # DNIe (OpenDNIe)
 
-Support for DNIe cards got merged by code from the OpenDNIe fork, by pull request #168. The code is now in Master. OpenSC does not support the Spanish Ceres cards.
+Support for DNIe cards got merged by code from the OpenDNIe fork, by pull request #168. The code is now in Master. OpenSC does not support the Spanish Ceres cards, neither DNIe 3.0 or newer cards when used through its contactless (NFC) interface.
 
 ## DNIe background
 
 [DNIe](https://sede.sepe.gob.es/portalSede/en/firma-electronica/DNI-electronico) is one of the SpanishEid-s. Historically, there exists a patch for OpenSC which adds support for DNIe in OpenSC.
-There were two different OpenSC implementations for Spanish National eID card (DNIe) support
 
-* The official one provided by *Spanish irección General de la policía y de la Guardia Civil (DGP)* was based in OpenSC-0.11.8, released under GPLv3. It's not being currently maintained.
+There were two different OpenSC implementations for first-generation Spanish National eID card (DNIe / DNI 2.0) support:
+
+* The official one provided by *Spanish Dirección General de la Policía y de la Guardia Civil (DGP)* was based in OpenSC-0.11.8, released under GPLv3. It's not being currently maintained.
 * *OpenDNIe* was an alternate LGPL implementation, written from scratch based on several documents and forums around DNIe.
 
-From the public administration point of view the card has been procured by the Ministry of Interior (DGP's DNIe office), The chip card is a ST19WL34 provided by ST Microelectrónics and software has been procured by Fabrica Nacional De Moneda y Timbre (FNMT-RCM).
+From the public administration point of view the card has been procured by the Ministry of Interior (DGP's DNIe office). The card chip is a ST19WL34 provided by ST Microelectronics, and its software has been procured by Fábrica Nacional De Moneda y Timbre (FNMT-RCM).
 
 * The DNIe card software is closely related to FNMT's Ceres card, being very similar in structure and design.
 * OpenDNIe is copyright 2011 of Juan Antonio Martinez ([GitHub](https://github.com/jonsito)).
 
+In 2015, the DGP began issuing DNIe 3.0 cards. These cards feature an Infineon Technologies SLE78CLFX408AP dual-interface chip, enabling contactless operation via NFC. In practice, however, the NFC interface has been used almost exclusively by proof-of-concept Android applications distributed by CNP-FNMT through Google Play and the Spanish DNIe website, and a LGPLv3-licensed example Android app SDK. Among these, the DNIeRemote application is particularly relevant to OpenSC development, as it allows a computer to access a DNIe 3.0 card through the NFC interface of a smartphone, eliminating the need for a dedicated smart card reader, like the [Remote Smart Card Reader app provided by the vsmartcard project](https://frankmorgner.github.io/vsmartcard/remote-reader/README.html). Currently, both OpenSC and the DGP-distributed PKCS#11 DNIe module only supports DNIe 3.0 cards through the traditional contact interface, and cannot work with vsmartcard's Remote Smart Card Reader due to the different wire protocol of the NFC interface.
+
+In 2021, the DGP began issuing DNIe 4.0 cards. According to [official sources](https://www.dnielectronico.es/PortalDNIe/PRF1_Cons02.action?pag=REF_110), this version is primarily a visual refresh of the DNIe 3.0, introduced to comply with EU Regulation 2019/1157.
+
 Resources:
 
 * The [official home page](http://www.dnielectronico.es) for the Spanish DNIe
+* The [official page for the Spanish DNIe 3.0/4.0 electrical specifications](https://www.dnielectronico.es/PortalDNIe/PRF1_Cons02.action?pag=REF_083)
+* [A technical specification sheet for the Spanish DNIe 3.0/4.0](https://www.dnielectronico.es/PDFs/CARACTERISTICAS_TECNICAS_DNIe_3.0.pdf) under the official home page domain
 
 ## Card capabilities
 
