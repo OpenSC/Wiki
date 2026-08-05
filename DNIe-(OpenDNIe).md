@@ -16,7 +16,7 @@ From the public administration point of view the card has been procured by the M
 * The DNIe card software is closely related to FNMT's Ceres card, being very similar in structure and design.
 * OpenDNIe is copyright 2011 of Juan Antonio Martinez ([GitHub](https://github.com/jonsito)).
 
-In 2015, the DGP began issuing DNIe 3.0 cards. These cards feature an Infineon Technologies SLE78CLFX408AP dual-interface chip, enabling contactless operation via NFC. In practice, however, the NFC interface has been used almost exclusively by proof-of-concept Android applications distributed by CNP-FNMT through Google Play and the Spanish DNIe website, and a LGPLv3-licensed example Android app SDK. Among these, the DNIeRemote application is particularly relevant to OpenSC development, as it allows a computer to access a DNIe 3.0 card through the NFC interface of a smartphone, eliminating the need for a dedicated smart card reader, like the [Remote Smart Card Reader app provided by the vsmartcard project](https://frankmorgner.github.io/vsmartcard/remote-reader/README.html). Currently, both OpenSC and the DGP-distributed PKCS#11 DNIe module only supports DNIe 3.0 cards through the traditional contact interface, and cannot work with vsmartcard's Remote Smart Card Reader due to the different wire protocol of the NFC interface.
+In 2015, the DGP began issuing DNIe 3.0 cards. These cards feature an Infineon Technologies SLE78CLFX408AP dual-interface chip, enabling contactless operation via NFC through a PACE channel, which requires a card-printed CAN to be established. In practice, however, the NFC interface has been used almost exclusively by proof-of-concept Android applications distributed by CNP-FNMT through Google Play and the Spanish DNIe website, and a LGPLv3-licensed example Android app SDK. Among these, the DNIeRemote application is particularly relevant to OpenSC development, as it allows a computer to access a DNIe 3.0 card through the NFC interface of a smartphone, eliminating the need for a dedicated smart card reader, like the [Remote Smart Card Reader app provided by the vsmartcard project](https://frankmorgner.github.io/vsmartcard/remote-reader/README.html). Currently, both OpenSC and the DGP-distributed PKCS#11 DNIe module only supports DNIe 3.0 cards through the traditional contact interface, and cannot work with vsmartcard's Remote Smart Card Reader due to the different wire protocol of the NFC interface.
 
 In 2021, the DGP began issuing DNIe 4.0 cards. According to [official sources](https://www.dnielectronico.es/PortalDNIe/PRF1_Cons02.action?pag=REF_110), this version is primarily a visual refresh of the DNIe 3.0, introduced to comply with EU Regulation 2019/1157.
 
@@ -25,6 +25,7 @@ Resources:
 * The [official home page](http://www.dnielectronico.es) for the Spanish DNIe
 * The [official page for the Spanish DNIe 3.0/4.0 electrical specifications](https://www.dnielectronico.es/PortalDNIe/PRF1_Cons02.action?pag=REF_083)
 * [A technical specification sheet for the Spanish DNIe 3.0/4.0](https://www.dnielectronico.es/PDFs/CARACTERISTICAS_TECNICAS_DNIe_3.0.pdf) under the official home page domain
+* [A paper discussing implementation details and a security assessment of the Spanish DNIe 3.0/4.0 contactless interface](https://webdiis.unizar.es/~ricardo/files/papers/RG-IFS-17.pdf)
 
 ## Card capabilities
 
