@@ -25,7 +25,7 @@ Resources:
 * The [official home page](http://www.dnielectronico.es) for the Spanish DNIe
 * The [official page for the Spanish DNIe 3.0/4.0 electrical specifications](https://www.dnielectronico.es/PortalDNIe/PRF1_Cons02.action?pag=REF_083)
 * [A technical specification sheet for the Spanish DNIe 3.0/4.0](https://www.dnielectronico.es/PDFs/CARACTERISTICAS_TECNICAS_DNIe_3.0.pdf) under the official home page domain
-* [A paper discussing implementation details and a security assessment of the Spanish DNIe 3.0/4.0 contactless interface](https://webdiis.unizar.es/~ricardo/files/papers/RG-IFS-17.pdf)
+* [A paper discussing implementation details and a security assessment of the Spanish DNIe 3.0/4.0 contactless interface](https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/iet-ifs.2017.0299)
 
 ## Card capabilities
 
