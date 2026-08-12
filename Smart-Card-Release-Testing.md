@@ -38,7 +38,7 @@
     * [Windows Login or Unlock](#windows-login-or-unlock)
     * [TLS Client Authentication with Internet Explorer, Edge or Chrome](#tls-client-authentication-with-internet-explorer-edge-or-chrome)
     * [Change PIN](#change-pin)
-  * [macOS Tokend](#macos-tokend)
+  * [macOS CryptoTokenKit](#macos-cryptotokenkit)
     * [Keychain Access](#keychain-access)
     * [TLS Client Authentication with Safari or Chrome](#tls-client-authentication-with-safari-or-chrome)
   * [Detaching and attaching reader with card inserted](#detaching-and-attaching-reader-with-card-inserted)
@@ -1048,7 +1048,7 @@ User is authenticated.
 **Expected Result:**
 PIN is changed.
 
-### macOS Tokend
+### macOS CryptoTokenKit
 
 #### Keychain Access
 

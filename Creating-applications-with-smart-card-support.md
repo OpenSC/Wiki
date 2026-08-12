@@ -41,7 +41,7 @@ Windows applications use CryptoAPI to do native SSL connections and to use the W
 
 ### CDSA/Keychain (Mac OS X)
 
-Mac OS X implements CDSA as the cryptography API for the Mac platform (in theory it is a universal specification but in practice only implemented by Apple). OS X 10.4 and above implement Tokend, what is similar in nature to BaseCSP on Windows - it provides a plugin architecture to add support for smart cards into the system. Applications using CDSA can then transparently make use of smart cards. Applications usually use higher level API-s (like Keychain or SSL socket API-s) that internally make use of CDSA. Trust management is exposed centrally via Keychain.app. Use Keychain API-s if writing a native application for Mac OS X or if you want to have a smooth "Mac style" user experience.
+Mac OS X implements CDSA as the cryptography API for the Mac platform (in theory it is a universal specification but in practice only implemented by Apple). OS X 10.4 until 10.11 and above implement Tokend, what is similar in nature to BaseCSP on Windows - it provides a plugin architecture to add support for smart cards into the system. Applications using CDSA can then transparently make use of smart cards. Applications usually use higher level API-s (like Keychain or SSL socket API-s) that internally make use of CDSA. Trust management is exposed centrally via Keychain.app. Use Keychain API-s if writing a native application for Mac OS X or if you want to have a smooth "Mac style" user experience.
 
 * [Mac Documentation: Security](https://developer.apple.com/documentation/security/)
 

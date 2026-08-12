@@ -18,7 +18,7 @@ on-card-applications. It is compatible with every contactless smart card reader
 In the default configuration, the GoID card ships with the following on-card-applications:
 
 * [SmartCard-HSM](https://github.com/OpenSC/OpenSC/wiki/SmartCardHSM) as PKI
-  application (available via PKCS#11, Minidriver, Tokend, CKT)
+  application (available via PKCS#11, Minidriver, CTK)
 * [PAccess](https://www.cryptoplexity.informatik.tu-darmstadt.de/media/crypt/publications_1/access_control.pdf)
   for physical access control
 

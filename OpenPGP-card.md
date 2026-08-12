@@ -313,7 +313,6 @@ $ opensc-tool -s 00:20:00:81:08:40:40:40:40:40:40:40:40 \
 ### Mac OS X
 
 * Use <https://gpgtools.org/> to get GnuPG2 for Mac OS X
-* Remove OpenSC.tokend from `/System/Library/Security/tokend` when personalizing your token. `scdaemon` requires exclusive access which can not be shared with OpenSC.tokend, which is started when OpenPGP Card/token is inserted.
 * kill `scdaemon` and re-insert your reader if you still see this:
 
 ```sh
