@@ -34,7 +34,6 @@ Release (or RC) version must be changed in the following files:
 * `NEWS`: Make sure to fix the release date for final release!
 * `VERSION.mk` : change package version major/minor/fix as needed, RCs get the package suffix `-rc`, which is removed for the final release
 * `configure.ac` : Update the [LT version number](https://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html), which is required with changes to, for example, `opensc.h` and `libopensc.exports`.
-* `.appveyor.yml`: Update the version on first line
 * `packaging/opensc.spec`: Update the version number to match `VERSION.mk`
 * `SECURITY.md`: Update supported version
 
@@ -120,23 +119,9 @@ Optionally, discuss changes to `NEWS` by opening a [new issue](https://github.co
 
 2. Add commits with fixes
     * Use git `cherry-pick -x` to pick commits from `master` to reference commit hashes
-3. Remove suffixes from build names in `appveyor.yml` and `.github/build.sh` script
+3. Remove suffixes from build names in `.github/build.sh` script
 
     ```diff
-    diff --git a/.appveyor.yml b/.appveyor.yml
-    index 4599100ad2..bca1775ae3 100644
-    --- a/.appveyor.yml
-    +++ b/.appveyor.yml
-    @@ -96,8 +96,7 @@ build_script:
-          }
-      - bash -c "exec 0</dev/null && if [ \"$APPVEYOR_REPO_BRANCH\" == \"master\" -a -z \"$APPVEYOR_PULL_REQUEST_NUMBER\" ]; then ./bootstrap; fi"
-      - bash -c "exec 0</dev/null && if [ \"$APPVEYOR_REPO_BRANCH\" == \"master\" -a -n \"$APPVEYOR_PULL_REQUEST_NUMBER\" ]; then ./bootstrap.ci -s \"-pr$APPVEYOR_PULL_REQUEST_NUMBER\"; fi"
-    -  - bash -c "exec 0</dev/null && if [ \"$APPVEYOR_REPO_BRANCH\" != \"master\" -a -z \"$APPVEYOR_PULL_REQUEST_NUMBER\" ]; then ./bootstrap.ci -s \"-$APPVEYOR_REPO_BRANCH\"; fi"
-    -  - bash -c "exec 0</dev/null && if [ \"$APPVEYOR_REPO_BRANCH\" != \"master\" -a -n \"$APPVEYOR_PULL_REQUEST_NUMBER\" ]; then ./bootstrap.ci -s \"-$APPVEYOR_REPO_BRANCH-prAPPVEYOR_PULL_REQUEST_NUMBER\"; fi"
-    +  - bash -c "exec 0</dev/null && if [ \"$APPVEYOR_REPO_BRANCH\" != \"master\" ]; then ./bootstrap; fi"
-      # disable features to speed up the script
-      - bash -c "exec 0</dev/null && ./configure --with-cygwin-native --disable-openssl --disable-readline --disable-zlib || cat config.log"
-      - bash -c "exec 0</dev/null && rm src/getopt.h"
     diff --git a/.github/build.sh b/.github/build.sh
     index 7770590af1..afb58af450 100755
     --- a/.github/build.sh
@@ -156,7 +141,6 @@ Optionally, discuss changes to `NEWS` by opening a [new issue](https://github.co
     ```
 
 4. Both in `stable-0.X.[Y+1]` and `master` branch:
-    * update version in `.appveyor.yml`,
     * update `NEWS` with changes,
     * update version in `SECURITY.md`,
     * update version and LT revision in `configure.ac`.
@@ -170,7 +154,6 @@ Optionally, discuss changes to `NEWS` by opening a [new issue](https://github.co
 6. Wait for [artifacts to build](#build-and-test-binaries)
 7. [Create a new release](#build-and-test-binaries)
 8. Write [announcement](#announcement)
-
 ## Maintenance tasks
 
 ### Clean up old nightly builds repository
@@ -182,11 +165,9 @@ Optionally, discuss changes to `NEWS` by opening a [new issue](https://github.co
 
 ### Refreshing access tokens
 
-There are two access tokens that are used by CI to push artifacts to the Nightly repository. One from Github
-Actions and one from AppVeyor. Their expiration can be checked on the
+From Github Actions, there is one access token that is used by CI to push artifacts to the Nightly repository.Its expiration can be checked on the
 [organization settings](https://github.com/organizations/OpenSC/settings/personal-access-tokens/active) page.
 
-* When they expire, the new need tokens need to be generated in [user settings](https://github.com/settings/tokens?type=beta).
-* Both tokens need _Read_ and _Write_ access to code and _Read_ access to metadata in OpenSC/Nightly repository.
+* When it expires, the new token needs to be generated in [user settings](https://github.com/settings/tokens?type=beta).
+* The token needs _Read_ and _Write_ access to code and _Read_ access to metadata in OpenSC/Nightly repository.
 * The Github Actions token needs to be inserted into the [OpenSC repository secrets](https://github.com/OpenSC/OpenSC/settings/secrets/actions).
-* The AppVeyor token needs to be encrypted using [AppVeyor website](https://ci.appveyor.com/account/frankmorgner/tools/encrypt) and updated in the `.appveyor.yml` for example like done in [#3230](https://github.com/OpenSC/OpenSC/pull/3230).
