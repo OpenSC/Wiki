@@ -12,9 +12,9 @@ If you plan a windows only application and want to develop with Visual C/C++/C#/
 
 ## Mac OS X
 
-In theory the same situation (use Mac OS X developer tools, use the Apple [CDSA](https://developer.apple.com/library/archive/documentation/Security/Conceptual/cryptoservices/CDSA/CDSA.html)/CSP API).
+In theory the same situation (use Mac OS X developer tools, use Apple [CryptoTokenKit](https://developer.apple.com/documentation/cryptotokenkit)).
 
-In practice there is no bridge between OpenSC and the Apple CDSA/CSP API, so currently you won't be able to use OpenSC. But work is in progress, see [OpenscTokend](OpenSC.tokend).
+In practice, you need install OpenSC from its official installer to correctly register the plugin in the system. For details how this works, see [OpenSCToken](https://github.com/frankmorgner/OpenSCToken).
 
 ## Linux
 

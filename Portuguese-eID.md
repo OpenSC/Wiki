@@ -88,4 +88,4 @@ Documentation or sample code contribution is appreciated.
 
 Starting with version 0.12.0, OpenSC supports the Portuguese eID card - both Authentication and Digital Signature keys.
 
-Full Mac OS X support is available through OpenSC.Tokend.
+Full Mac OS X support is available through OpenSCToken.
