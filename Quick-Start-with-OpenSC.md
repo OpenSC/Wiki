@@ -8,7 +8,7 @@ A word of warning: these experiments can destroy your card (e.g. if we have a bu
 
 ## Install the required middleware
 
-Some older card readers (or standalone USB tokens) use a nonstandard wire format for communicating between the computer and the device. You will need to get the corresponding (often proprietary) software up and running first.  For USB tokens see the respective page on this Wiki (e.g., [[Aladdin eToken PRO]], [SafeNet tokens](SafeNet-cards)).  For card readers, you should get to the point where the LED turns on when you plug it into the USB socket.
+Some older card readers (or standalone USB tokens) use a nonstandard wire format for communicating between the computer and the device. You will need to get the corresponding (often proprietary) software up and running first.  For USB tokens see the respective page on this Wiki (e.g., [SafeNet tokens](SafeNet-cards)).  For card readers, you should get to the point where the LED turns on when you plug it into the USB socket.
 
 ## Install OpenSC
 

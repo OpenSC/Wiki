@@ -58,7 +58,7 @@ Each entry on this list possibly represents a whole family of tokens. See each p
 
 * [Aktiv Co. Rutoken ECP](Aktiv-Co.-Rutoken-ECP)
 * [Aktiv Co. Rutoken S](Aktiv-Co.-Rutoken-S)
-* [Aladdin Etoken Pro](Aladdin-eToken-PRO)
+* Aladdin Etoken Pro
 * [Athena ASEPCOS / ASEKey](Athena-ASEPCOS-ASEKey)
 * [CardContact SmartCardHsm](SmartCardHSM)
 * [Crypto Stick](OpenPGP-card)
