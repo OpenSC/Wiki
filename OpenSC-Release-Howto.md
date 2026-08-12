@@ -169,5 +169,5 @@ From Github Actions, there is one access token that is used by CI to push artifa
 [organization settings](https://github.com/organizations/OpenSC/settings/personal-access-tokens/active) page.
 
 * When it expires, the new token needs to be generated in [user settings](https://github.com/settings/tokens?type=beta).
-* The token need _Read_ and _Write_ access to code and _Read_ access to metadata in OpenSC/Nightly repository.
+* The token needs _Read_ and _Write_ access to code and _Read_ access to metadata in OpenSC/Nightly repository.
 * The Github Actions token needs to be inserted into the [OpenSC repository secrets](https://github.com/OpenSC/OpenSC/settings/secrets/actions).
