@@ -13,8 +13,7 @@ Supported eID cards:
 * [IAS-ECC](IAS-ECC)
 * [UnitedStatesPIV](US-PIV)
 * [GermanEid](German-ID-Cards)
-* [ItalianCNS](Italian-CNS-and-CIE)
-* [ItalianEid](Italian-Infocamere)
+* [Italian CNS, CIE and digital signature](Italian-CNS-and-CIE)
 * [EstonianEid](Estonian-eID-(EstEID))
 * [PortugueseEid](Portuguese-eID)
 * [US CAC](US-CAC)
@@ -43,6 +42,7 @@ Read-only cards:
 * [AKIS](AKiS-cards)
 * [TCOS](TCOS-based-preformatted-cards)
 * [MTCOS](MaskTech-cards)
+* [Actalis legacy signature cards](Italian-signature-card-Actalis) (legacy emulation, disabled by default)
 
 JavaCard applets:
 
@@ -99,6 +99,5 @@ Unsupported smart cards:
 * IBM JCOP
 * [EMV](EMV-(Europay,-Mastercard,-VISA))
 * [Seccos](Seccos)
-* [Actalis](Italian-signature-card-Actalis)
 * [ACOS5](ACOS5)
 * [GemplusGpk](Gemplus-GPK-16k)
