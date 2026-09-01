@@ -39,12 +39,8 @@ Cards you are likely to meet:
 **CIE** stands for *Carta d'Identità Elettronica* (Electronic Identity Card). It is today the
 principal identity document in Italy: since 2016 it has been replacing the paper identity card, and
 its primary purpose is to prove the holder's identity in person. Unlike a CNS, which exists to carry
-its authentication certificate, the CIE is first of all a physical identity document; its own single
-authentication certificate is a secondary feature. Signing a document with it (through
-the official *CieSign* service) produces an advanced electronic signature (*firma elettronica
-avanzata*, eIDAS art. 26), not a qualified one: it meets the written-form requirement with the
-effect of art. 2702 of the Civil Code (CAD art. 20) and is valid in every context except the acts
-listed in art. 1350 c.c. (e.g. real-estate deeds), which still require a qualified signature. It is
+its authentication certificate, the CIE is first of all a physical identity document; its own
+authentication certificate is a secondary feature. It is
 issued only by the Ministry
 of the Interior (municipalities act as registration authorities), and a citizen holds at most one.
 The first two generations (2001–2004 pilots) are contact cards, CNS-like, and are handled by OpenSC;
@@ -99,12 +95,22 @@ The card-id part of the `commonName` is the same value `pkcs15-tool --dump` repo
 serial number, which is a handy cross-check that you are looking at the right card.
 
 The certificate is used for TLS client authentication against Italian public-administration portals.
-It is **not**
-a qualified certificate, so a signature made with it is not a *firma digitale*: Italian signature
-verification tools will report that the certificate has no legal value for signing. Italian law does
-give it a specific, narrower effect — using the CNS substitutes an advanced electronic signature
-*towards the public administration*, for the purposes of arts. 64–65 of the Digital Administration
-Code (DPCM 22 February 2013, art. 61 c. 2) — but it never substitutes a qualified signature.
+It is **not** a qualified certificate, so a signature made with it is not a *firma digitale*, and
+signature-verification tools will report that it has no legal value as such — though the law does
+allow it to produce an advanced electronic signature (see *Signing with the authentication
+certificate* below).
+
+### Signing with the authentication certificate
+
+The authentication certificate on a CNS or CIE is meant for authentication, but Italian law also
+allows it to be used to sign, producing an advanced electronic signature (*firma elettronica
+avanzata*, FEA — eIDAS art. 26), never a qualified one. As a FEA it satisfies the written-form
+requirement with the effect of art. 2702 of the Civil Code (CAD art. 20), and its use substitutes an
+advanced electronic signature towards the public administration for the purposes of arts. 64–65 of
+the same Code (DPCM 22 February 2013, art. 61 c. 2); it cannot replace a qualified signature, so it
+is not valid for the acts listed in art. 1350 c.c. (e.g. real-estate deeds). The signing tools
+shipped for these cards — the official *CieSign* app for the CIE, the vendor middleware for a CNS —
+typically expose this as a CAdES or PAdES signature.
 
 ### The qualified signature certificate
 
