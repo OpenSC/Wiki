@@ -246,15 +246,27 @@ exposing the CNS certificate, the qualified signature certificate (DS3) and both
 proposed in **[PR #3751](https://github.com/OpenSC/OpenSC/pull/3751)** — not merged yet, so it is
 not in any release.
 
+### Contactless (NFC) — support in progress
+
+Many CNS cards carry a dual-interface chip and can also be read over NFC. Over the contactless
+interface the card answers a bare ATR `3B 80 80 01 01` with no historical bytes, so `itacns` — which
+recognises a CNS by the `CNS` marker in the historical bytes — cannot identify it, and the card is
+reported as `CKR_TOKEN_NOT_RECOGNIZED` even though the *same card works over contact*. This is what
+was seen with an `ST 2022` health card ([#3755](https://github.com/OpenSC/OpenSC/issues/3755)): it is
+supported over the contact interface, and only the NFC path was missing.
+
+A change that identifies the card over NFC by selecting its application instead of by ATR is proposed
+in **[PR #3806](https://github.com/OpenSC/OpenSC/pull/3806)** — not merged yet.
+
 ### Not supported
 
 * **CIE 3.0** (the electronic identity card issued since 2016). It is IAS-ECC based with a privacy
   protocol on top, and a proposal to support it was closed as not planned
   ([#2486](https://github.com/OpenSC/OpenSC/issues/2486)). Use the official
   [CIE middleware](https://github.com/italia/cie-middleware) instead.
-* **`ST 2022` health cards**, which are not recognised at all and fail with
-  `CKR_TOKEN_NOT_RECOGNIZED` ([#3755](https://github.com/OpenSC/OpenSC/issues/3755), open). The
-  `ACx/ACe/ACj 2025` generations have not been reported on either way.
+* **The Actalis `ACe 2025` CNS**, recognised as a CNS but with its certificate at a card-specific
+  path that `itacns` does not yet read; being worked out in
+  [#3804](https://github.com/OpenSC/OpenSC/issues/3804) (open).
 * **The qualified signature function of most cards that have one**, as explained above.
 
 If your card is not supported, the health-card system publishes a driver finder indexed by the code
