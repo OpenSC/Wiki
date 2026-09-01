@@ -38,9 +38,9 @@ Cards you are likely to meet:
 
 **CIE** stands for *Carta d'Identità Elettronica* (Electronic Identity Card). It is today the
 principal identity document in Italy: since 2016 it has been replacing the paper identity card, and
-its primary purpose is to prove the holder's identity in person. Unlike the CNS — which is
-essentially a set of certificates — the CIE is first of all a physical identity document; as an
-added feature it carries a single authentication certificate. Signing a document with it (through
+its primary purpose is to prove the holder's identity in person. Unlike a CNS, which exists to carry
+its authentication certificate, the CIE is first of all a physical identity document; its own single
+authentication certificate is a secondary feature. Signing a document with it (through
 the official *CieSign* service) produces an advanced electronic signature (*firma elettronica
 avanzata*, eIDAS art. 26), not a qualified one: it meets the written-form requirement with the
 effect of art. 2702 of the Civil Code (CAD art. 20) and is valid in every context except the acts
