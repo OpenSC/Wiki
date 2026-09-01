@@ -36,11 +36,14 @@ Cards you are likely to meet:
   typically as a bundle of a CNS certificate plus a qualified signature certificate, on a smart card
   or a USB token.
 
-**CIE** stands for *Carta d'Identità Elettronica* (Electronic Identity Card). Unlike the CNS it is a
-physical identity document, it is issued only by the Ministry of the Interior (municipalities act as
-registration authorities), and a citizen holds at most one. The first two generations (2001–2004
-pilots) are CNS-like and are handled by OpenSC; **CIE 3.0** (2016 onwards) is a different platform
-and is *not* supported — see section 5.
+**CIE** stands for *Carta d'Identità Elettronica* (Electronic Identity Card). It is today the
+principal identity document in Italy: since 2016 it has been replacing the paper identity card, and
+its primary purpose is to prove the holder's identity in person. Unlike the CNS — which is
+essentially a set of certificates — the CIE is first of all a physical identity document, with the
+on-chip authentication and signature certificates as an added feature. It is issued only by the
+Ministry of the Interior (municipalities act as registration authorities), and a citizen holds at
+most one. The first two generations (2001–2004 pilots) are CNS-like and are handled by OpenSC;
+**CIE 3.0** (2016 onwards) is a different platform and is *not* supported — see section 5.
 
 A note on a claim that used to be on this page: there is **no rule forbidding a CNS to a CIE
 holder**. The technical rules (DM 9 December 2004, §4.1.2) only require the citizen to *declare*, at
