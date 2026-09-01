@@ -40,11 +40,12 @@ Cards you are likely to meet:
 principal identity document in Italy: since 2016 it has been replacing the paper identity card, and
 its primary purpose is to prove the holder's identity in person. Unlike the CNS — which is
 essentially a set of certificates — the CIE is first of all a physical identity document; as an
-added feature it carries a single authentication certificate. It can be used to sign documents, but
-the result is only an advanced electronic signature (*firma elettronica avanzata*), never a qualified
-one; and, as with the CNS, its use substitutes an advanced electronic signature towards the public
-administration for the purposes of arts. 64–65 of the Digital Administration Code (DPCM 22 February
-2013, art. 61 c. 2). It is issued only by the Ministry
+added feature it carries a single authentication certificate. Signing a document with it (through
+the official *CieSign* service) produces an advanced electronic signature (*firma elettronica
+avanzata*, eIDAS art. 26), not a qualified one: it meets the written-form requirement with the
+effect of art. 2702 of the Civil Code (CAD art. 20) and is valid in every context except the acts
+listed in art. 1350 c.c. (e.g. real-estate deeds), which still require a qualified signature. It is
+issued only by the Ministry
 of the Interior (municipalities act as registration authorities), and a citizen holds at most one.
 The first two generations (2001–2004 pilots) are contact cards, CNS-like, and are handled by OpenSC;
 the current **CIE 3.0** (2016 onwards) is a different, **contactless-only** (NFC) platform and is
