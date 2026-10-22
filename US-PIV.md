@@ -11,7 +11,7 @@ The [piv-tool](https://htmlpreview.github.io/?https://github.com/OpenSC/OpenSC/b
 
 The PIV is not a PKCS#15 type card, but rather an object based application. OpenSC provides a PKCS#15 emulator to access the certificates and keys, along with the data objects. Thus for example the "X.509 Certificate for PIV Authentication" can be used with PKCS#11 for login or web access.
 
-The YubiKey supports the PIV card interface, details can be found [here](https://developers.yubico.com/yubico-piv-tool/YubiKey_PIV_introduction.html).
+The YubiKey supports the PIV card interface, details can be found in the [YubiKey PIV introduction](https://developers.yubico.com/yubico-piv-tool/YubiKey_PIV_introduction.html).
 There is also [arekinath/PivApplet](https://github.com/arekinath/PivApplet) - PIV (NIST SP 800-73-4) compatible open source JavaCard applet.
 
 ## Support overview

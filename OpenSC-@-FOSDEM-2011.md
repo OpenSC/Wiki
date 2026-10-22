@@ -4,7 +4,7 @@
 
 | **Topic** | **Slides** | **Video** |
 | --------- | ---------- | ------- |
-| Setup, short introduction of presenters  | [slides](./attachments/wiki/FOSDEM2011/FOSDEM_INTRO.pdf) | [video](http://video.fosdem.org/2011/devrooms/security/security_1300__intro__paljak.webm) |
+| Setup, short introduction of presenters | [slides](./attachments/wiki/FOSDEM2011/FOSDEM_INTRO.pdf) | [video](http://video.fosdem.org/2011/devrooms/security/security_1300__intro__paljak.webm) |
 | Smart card jungle | [slides](./attachments/wiki/FOSDEM2011/01_jean-michel.pdf) | [video](http://video.fosdem.org/2011/devrooms/security/security_1315__smartcard__poure.webm) |
 | SSH libraries: SSH vs TLS; libssh | [slides](./attachments/wiki/FOSDEM2011/SSH_libraries.pdf) | [video](http://video.fosdem.org/2011/devrooms/security/security_1345__ssh__adamantiadis.webm) |
 | libcurl: Supporting seven SSL libraries and one SSH library | | [video](http://video.fosdem.org/2011/devrooms/security/security_1415__libcurl__stenberg.webm) |
@@ -19,4 +19,4 @@
 
 ## Video Recordings
 
-The videos can be downloaded one by one [here](https://video.fosdem.org/2011/devrooms/security/).
+The videos can be downloaded one by one from the [FOSDEM 2011 video archive](https://video.fosdem.org/2011/devrooms/security/).

@@ -154,6 +154,7 @@ Optionally, discuss changes to `NEWS` by opening a [new issue](https://github.co
 6. Wait for [artifacts to build](#build-and-test-binaries)
 7. [Create a new release](#build-and-test-binaries)
 8. Write [announcement](#announcement)
+
 ## Maintenance tasks
 
 ### Clean up old nightly builds repository

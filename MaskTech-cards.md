@@ -13,4 +13,4 @@ Features include:
 - decrypt,
 - digital signing.
 
-More information can be found [here](http://masktech.com/Products/MTCOS-Professional/11/en).
+More information can be found on the [MTCOS Professional product page](http://masktech.com/Products/MTCOS-Professional/11/en).

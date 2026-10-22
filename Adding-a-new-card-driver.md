@@ -2,29 +2,35 @@
 
 ## Preconditions when writing a new card driver
 
-- Identify the card. A useful tool is to check the card's ATR (`opensc-tool -a`) against the database located at https://smartcard-atr.apdu.fr/
+- Identify the card. A useful tool is to check the card's ATR (`opensc-tool -a`) against the database located at <https://smartcard-atr.apdu.fr/>
 - Most useful is the developer documentation with the APDUs that the card is capable of processing.
 - Even if no documentation is available, it is possible to spy the APDUs which the card accepts using a possibly proprietary card driver (e.g. PKCS#11 module).
 - To receive the debug log of pcscd on Linux (including APDUs), you can run `pcscd` in the foreground with debugging enabled:
+
   ```bash
   sudo pcscd --foreground --debug --apdu
   ```
+
   Or, if managed by systemd, you can configure `PCSCD_ARGS="--debug --apdu"` in `/etc/default/pcscd` (or via a systemd drop-in) and view logs via:
+
   ```bash
   journalctl -u pcscd --follow
   ```
+
 - To watch APDUs on macOS, you can enable smart card logging and use the `log` command:
+
   ```bash
   sudo defaults write /Library/Preferences/com.apple.security.smartcard Logging -bool yes
   log stream --predicate '(subsystem == "com.apple.CryptoTokenKit") && (category == "APDULog")'
   ```
-- On Windows, you can use the [APDUTrace](https://www.mysmartlogon.com/download#APDUTrace) tool. Refer to the user documentation at https://www.mysmartlogon.com/download#APDUTrace
+
+- On Windows, you can use the [APDUTrace](https://www.mysmartlogon.com/download#APDUTrace) tool. Refer to the user documentation at <https://www.mysmartlogon.com/download#APDUTrace>
 
 ## Card driver programming
 
 ### Investigation
 
-If (some previous version of) the card already has a driver in OpenSC, it may only be needed to add the ATR map to your new card and change some minor details to the card driver. Most cards are based on the ISO/IEC 7816 Specification, which is used by most card drivers in OpenSC as base implementation for card driver specific modifications. Ideally, you keep changes to OpenSC small and managable. Only when your card deviates from some existing card-driver implementation too much, create a new card driver
+If (some previous version of) the card already has a driver in OpenSC, it may only be needed to add the ATR map to your new card and change some minor details to the card driver. Most cards are based on the ISO/IEC 7816 Specification, which is used by most card drivers in OpenSC as base implementation for card driver specific modifications. Ideally, you keep changes to OpenSC small and manageable. Only when your card deviates from some existing card-driver implementation too much, create a new card driver
 
 ### Creating a new card driver
 
@@ -43,9 +49,9 @@ Creating the skeleton card driver:
 
 PKCS#15 driver hookup:
 
-* PKCS#15 card formats should need minimal or no modifications, to allow `sc_pkcs15_bind` to scan the card and populate in-memory structures,
-* non-PKCS#15 cards need to create a `pkcs15-example.c`, hook it to `builtin_emulators` list in `pkcs15-syn.c` and add to lists in `Makefile.am` and `Makefile.mak`,
-* `pkcs15-example.c` creates the in-memory structure by linking right objects with their counterparts based on ID codes or whatever information that is necessary.
+- PKCS#15 card formats should need minimal or no modifications, to allow `sc_pkcs15_bind` to scan the card and populate in-memory structures,
+- non-PKCS#15 cards need to create a `pkcs15-example.c`, hook it to `builtin_emulators` list in `pkcs15-syn.c` and add to lists in `Makefile.am` and `Makefile.mak`,
+- `pkcs15-example.c` creates the in-memory structure by linking right objects with their counterparts based on ID codes or whatever information that is necessary.
 
 ### AI Assistance
 
@@ -55,9 +61,9 @@ Even if no detailed documentation is available for a new card, AI tools like Cha
 
 Use OpenSC's command line tools to verify your implementation:
 
-* `opensc-tool -n` shows the name of the card
-* `pkcs15-tool -D` dumps the card's profile with certificates, keys and PINs
-* `pkcs11-tool --test --login` performs basic signature validation tests with the card
+- `opensc-tool -n` shows the name of the card
+- `pkcs15-tool -D` dumps the card's profile with certificates, keys and PINs
+- `pkcs11-tool --test --login` performs basic signature validation tests with the card
 
 For more elaborated tests, see [Smart Card Release Testing](Smart-Card-Release-Testing).
 
@@ -74,4 +80,4 @@ When a given ATR string A is compared to the ATR supplied in `pbAtr`, it matches
 
 ## Examples
 
-* [New card driver: EnterSafe card example](New-card-driver-EnterSafe-card-example)
+- [New card driver: EnterSafe card example](New-card-driver-EnterSafe-card-example)
