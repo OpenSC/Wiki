@@ -24,7 +24,7 @@
 
 ### Investigation
 
-If (some previous version of) the card already has a driver in OpenSC, it may only be needed to add the ATR map to your new card and change some minor details to the card driver. Most cards are based on the ISO/IEC 7816 Specification, which is used by most card drivers in OpenSC as base implementation for card driver specific modifications. Ideally, you keep changes to OpenSC small and managable. Only when your card deviates from some existing card-driver implementation too much, create a new card driver
+If (some previous version of) the card already has a driver in OpenSC, it may only be needed to add the ATR map to your new card and change some minor details to the card driver. Most cards are based on the ISO/IEC 7816 Specification, which is used by most card drivers in OpenSC as base implementation for card driver specific modifications. Ideally, you keep changes to OpenSC small and manageable. Only when your card deviates from some existing card-driver implementation too much, create a new card driver
 
 ### Creating a new card driver
 
