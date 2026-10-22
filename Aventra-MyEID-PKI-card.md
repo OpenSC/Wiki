@@ -15,17 +15,18 @@ Aventra participates in development and testing of OpenSC, keeping MyEID support
 
 The MyEID applet implements all the basic functionality of a Public Key Infrastructure (PKI) token specified in the most common international PKI standards, such as ISO 7816-15. MyEID supports authentication with alphanumeric and challenge/response PIN codes. It can emulate a PIV/CIV card by mapping the ISO 7816-15 (PKCS#15) structure to the PIV/CIV command interface.
 
-> Aventra’s MyEID PKI Smart Card has evolved into version 5, based on NXP’s SmartMX3 microcontroller and JCOP 4 Java Card platform. 
+> Aventra’s MyEID PKI Smart Card has evolved into version 5, based on NXP’s SmartMX3 microcontroller and JCOP 4 Java Card platform.
 MyEID 5.0.0 is certified to Common Criteria EAL4+ level.
+
 ### New in MyEID 5
 
 EEPROM storage space is increased to 180 kilobytes. New features include:
+
 * Secure Messaging as specified in [NIST SP 800-73-5](https://csrc.nist.gov/pubs/sp/800/73/pt2/5/final)
 * Extended length APDUs
 * Challenge/response PINs with AES algorithm
 * Brainpool ECC curves
 * on-card PSS and OAEP padding
-
 
 ### Technical details
 
@@ -104,11 +105,12 @@ pkcs15-init --generate-key ec:prime256v1 --auth-id 01 --so-pin 12345678 --pin 11
 
 ```
 
-When done creating PIN codes, finalize (activate) the card. After this all access conditions (PINs) are in effect. This is not mandatory, but before this is done card elements can be accessed without satisfying specified access conditions (without entering PIN codes). 
+When done creating PIN codes, finalize (activate) the card. After this all access conditions (PINs) are in effect. This is not mandatory, but before this is done card elements can be accessed without satisfying specified access conditions (without entering PIN codes).
 
 ```bash
 pkcs15-init -F
 ```
+
 **NOTE:** Since MyEID 5, cryptographic operations such as signature creation are not allowed before the card is finalized. This is to prevent accidentally forgetting the card in unfinalized state. Crypto-operations can be explicitly enabled in creation (unfinalized) state, see the reference manual for details.
 
 ### Smart card reader configuration
@@ -161,5 +163,5 @@ Aventra offers a complete portfolio of card products ranging from simple plastic
 ## Notes
 
 * Card requires a PUK code when creating a PIN code (fails to create a PIN without a PUK).
-* A minidriver is available for download [here](https://aventra.fi/downloads/).
+* A minidriver is available from the [Aventra downloads page](https://aventra.fi/downloads/).
 * You can **not** upload custom Java-Applets like the openpgpcard-applet to the Aventra MyEID-card because the card is locked and Aventra refuses to hand out the required PIN. Please contact Aventra if you have any special needs or requests.

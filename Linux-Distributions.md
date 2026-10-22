@@ -11,9 +11,9 @@ A general and current overview is shown on [repology.org](https://repology.org/m
 | Arch Linux | <https://archlinux.org/packages/extra/x86_64/opensc/> |
 | Debian | <https://packages.debian.org/search?keywords=opensc> |
 | Fedora | <https://src.fedoraproject.org/rpms/opensc> |
-| RHEL/CentOS |   |
+| RHEL/CentOS | |
 | Gentoo Linux | <https://packages.gentoo.org/packages/dev-libs/opensc> |
-| SUSE LINUX |    |
+| SUSE LINUX | |
 | Rock Linux | <http://www.rocklinux.net/packages/opensc.html> |
 | OpenSuse | <https://software.opensuse.org/package/opensc> |
 | Ubuntu | <https://packages.ubuntu.com/search?keywords=opensc> |

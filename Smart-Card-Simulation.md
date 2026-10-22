@@ -205,7 +205,7 @@ This needs to be done before all below described applet-specific steps.
     export JC_CLASSIC_HOME=$PWD/oracle_javacard_sdks/jc305u3_kit
     ```
 
-3. Build `jcardsim-3.0.5-SNAPSHOT.jar` as described [here](https://jcardsim.org/docs/getting-source-compiling):
+3. Build `jcardsim-3.0.5-SNAPSHOT.jar` as described in the [jCardSim build instructions](https://jcardsim.org/docs/getting-source-compiling):
 
     ```sh
     git clone https://github.com/arekinath/jcardsim.git

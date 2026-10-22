@@ -9,7 +9,7 @@ Microsoft Windows systems use CryptoAPI in native win32 applications that deal w
 The situation is comparable to OpenSC itself, where the OpenSC framework takes care of the annoying parts and to support a new smart card, just a card specific driver needs to be implemented.
 
 The smart card minidriver offers a shortcut compared to building a traditional cryptographic service provider (CSP). It does this by handling most of the complicated cryptographic tasks behind the scenes, saving the developer time and effort.
-Available specifications can be found [here](https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn631754(v=vs.85)). The versions are:
+Available specifications can be found in the [Microsoft smart card minidriver documentation](https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn631754(v=vs.85)). The versions are:
 
 * version 5 of the minidriver specification applies to Windows XP (and Windows Vista),
 * version 6 applies to Windows Vista,

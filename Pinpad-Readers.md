@@ -20,7 +20,7 @@ Class 3 readers have pinpad and a display.
 | ------ | -- | ---- | -------------- | -------- |
 | Smartboard G83-6700 | Win32 | Class2 PS/2 | CTMGR.DLL | A keyboard integrated reader which uses the keyboard for pin entry. Buggy CT-API driver, I got it working but not without patching OpenCT. No known Unix support |
 | Gemalto | | | | |
-|  IDBridge CT700/710 (PC Pinpad) | Win32 & Linux | Class3 USB | PC/SC, ?? | CCID compliant. No special actions was needed to get it working on Linux and Win32. (Don't know if it's important - on Windows 'Gemalto Access' middleware was installed. --VTA) |
+| IDBridge CT700/710 (PC Pinpad) | Win32 & Linux | Class3 USB | PC/SC, ?? | CCID compliant. No special actions was needed to get it working on Linux and Win32. (Don't know if it's important - on Windows 'Gemalto Access' middleware was installed. --VTA) |
 | Reiner SCT | | | | |
 | cyberJack keyboard | Win32 | Class2 PS/2 | CTRSCT32.DLL | A cheap class 2 solution. It uses the keyboard for pin entry. No known Unix support. |
 | cyberJack pinpad | Win32 | Class2 USB | CTRSCT32.DLL | cyberJack {basic, pinpad, e-com 2.0} are [discontinued](https://www.reiner-sct.com/lang/en/alte-Treiber.html) |

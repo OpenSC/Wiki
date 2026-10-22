@@ -11,4 +11,4 @@
 
 ## Video Recordings
 
-Videos can be downloaded one by one [here](https://video.fosdem.org/2012/devrooms/security/).
+Videos can be downloaded one by one from the [FOSDEM 2012 video archive](https://video.fosdem.org/2012/devrooms/security/).

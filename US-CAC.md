@@ -1,6 +1,6 @@
 # US CAC
 
-The US Army is using the Common Access Cards (CAC), specified by the [Global Smart Card Interoperability Specification (GSC-IS) version 2.1](https://www.nist.gov/publications/government-smart-card-interoperability-specification-version-21). Some developer resources can be found [here](https://www.cac.mil/Common-Access-Card/Developer-Resources/).
+The US Army is using the Common Access Cards (CAC), specified by the [Global Smart Card Interoperability Specification (GSC-IS) version 2.1](https://www.nist.gov/publications/government-smart-card-interoperability-specification-version-21). Some developer resources can be found on the [CAC developer resources page](https://www.cac.mil/Common-Access-Card/Developer-Resources/).
 
 The standard is implemented in the `src/libopensc/{pkcs15,card}-cac.c`.
 

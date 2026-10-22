@@ -12,4 +12,4 @@ See [OpenSSH and smart cards PKCS#11](OpenSSH-and-smart-cards-PKCS#11) for more 
 ## PuttyCard (deprecated)
 
 [PuTTYcard](PuTTYcard) is another, independent implementation to add smart card support to putty.
-Read more about it [here](PuTTYcard).
+Read more about it on the [PuTTYcard page](PuTTYcard).
