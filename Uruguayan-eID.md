@@ -49,6 +49,25 @@ Resources:
   MRZ are exposed as PKCS#15 data objects, readable without a PIN.
 * **PIN:** a single global user PIN protects the signing key.
 
+## Contactless access (PACE) and the MRZ
+
+On the v5 card, the contactless interface is protected by PACE keyed with the
+**MRZ**, not with a CAN:
+the MRZ is needed to open a PACE channel before any other command can be sent
+over NFC. OpenSC reads it from a file named `cedulauy_mrz` in the OpenSC cache
+directory (`file_cache_dir` in `opensc.conf`; by default `$HOME/.cache/opensc`
+on Linux and macOS, `%USERPROFILE%\.eid\cache` on Windows).
+
+There are several convenient ways to obtain the MRZ:
+
+* **From the contact interface:** the MRZ is exposed as a data object readable
+  without a PIN (see the example below), so it can be read once over a contact
+  reader. The `cedulauy-tool` utility
+  ([OpenSC#3805](https://github.com/OpenSC/OpenSC/pull/3805)) reads it this way.
+* **From the printed card:** the MRZ is printed on the back of the card and can
+  be read optically, with a webcam or from a scanned image, with
+  [cedulauy-mrz-scan](https://github.com/nicolasgutierrezdev/cedulauy-mrz-scan).
+
 ## Example
 
 Reading the card structure with `pkcs15-tool` (cardholder name, serial number and
