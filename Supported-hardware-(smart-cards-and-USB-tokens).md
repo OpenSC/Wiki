@@ -17,6 +17,7 @@ Supported eID cards:
 * [ItalianEid](Italian-Infocamere)
 * [EstonianEid](Estonian-eID-(EstEID))
 * [PortugueseEid](Portuguese-eID)
+* [Spanish eID](Spanish-Ceres-DNIe)
 * [US CAC](US-CAC)
 * [UruguayanEid](Uruguayan-eID)
 
@@ -84,7 +85,6 @@ Unclear/unsupported eID cards:
 * [Belgian eID](Belgian-Belpic)
 * [German EGK](German-eHBA,-eGK)
 * Malaysian MyKAD
-* [Spanish eID](Spanish-Ceres-DNIe)
 * [Austrian eID](Austrian-"Bürgerkarte")
 * Italian Postecert
 * [Swedish BankID](Swedish-BankID)
